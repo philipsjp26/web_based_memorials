@@ -1,0 +1,30 @@
+/*------ Instagram Feed Area Start ------*/
+.instagram-carousel {
+    .instagram-item {
+        position: relative;
+        z-index: 1;
+
+        &:before {
+            background-color: rgba($black, 0.4);
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: 0.4s;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            height: 100%;
+            width: 100%;
+        }
+
+        &:hover {
+            &:before {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+}
+
+/*------ Instagram Feed Area End ------*/
