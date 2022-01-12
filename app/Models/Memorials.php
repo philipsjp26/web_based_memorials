@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
+use Exception;
 
 class Memorials extends Model
 {
     use HasFactory;
+    public $returnArray = array();
+
     protected $table = 'memorials';
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:m:s',
@@ -19,6 +23,17 @@ class Memorials extends Model
         'nik', 'gender', 'relationship_id', 'category_id'
     ];
 
+    public static function isExist($data)
+    {
+        $nikIsExists = self::where('nik', $data->nik)->first();
+        if ($nikIsExists) {
+            $returnArray['status'] = true;
+            $returnArray['message'] = 'Data already exist';
+        }else {
+            $returnArray['status'] = false;
+        }
+        return $returnArray;
+    }
     public function getGenderAttribute($gender)
     {
         switch ($gender) {

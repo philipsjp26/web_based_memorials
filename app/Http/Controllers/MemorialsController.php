@@ -9,6 +9,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class MemorialsController extends Controller
 {
+
+
     public function create(Request $request)
     {
 
@@ -27,20 +29,26 @@ class MemorialsController extends Controller
         }
         try {
 
-            $imageName = time() . '.' . $request->image->extension();
-
-            $request->image->move(public_path('images'), $imageName);
+            
             $data = new Memorials;
-            $data->first_name = $request->first_name;
-            $data->middle_name = $request->middle_name;
-            $data->last_name = $request->last_name;
-            $data->nik = $request->nik;
-            $data->gender = $data->getGenderAttribute($request->gender);
-            $data->relationship_id = $request->relationship;
-            $data->category_id = $request->memorial_category;
-            $data->save();
-            insertIntoMemorialImages($data, $imageName, 'ceca');
-            Alert::success('Success', 'Memorial has been created');
+            $result = $data->isExist($request);
+            if ($result['status'] == true) {
+                Alert::error('Error', $result['message']);
+            } else {
+                $imageName = time() . '.' . $request->image->extension();
+                $path = $request->file('image')->store('public/images');
+                $data->first_name = $request->first_name;
+                $data->middle_name = $request->middle_name;
+                $data->last_name = $request->last_name;
+                $data->nik = $request->nik;
+                $data->gender = $data->getGenderAttribute($request->gender);
+                $data->relationship_id = $request->relationship;
+                $data->category_id = $request->memorial_category;
+                $data->save();
+
+                insertIntoMemorialImages($data, $imageName, $path);
+                Alert::success('Success', 'Memorial has been created');
+            }
             return back();
         } catch (\Exception $e) {
             //throw $th;
