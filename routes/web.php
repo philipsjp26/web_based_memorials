@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('components.slider');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::group(['prefix' => 'memorial', 'middleware' => 'isLogin'], function () {
     Route::post('/create', [MemorialsController::class, 'create']);
@@ -28,6 +26,7 @@ Route::group(['prefix' => 'memorial', 'middleware' => 'isLogin'], function () {
 Route::prefix('/home')->group(function () {
     Route::get('/list', [HomeController::class, 'pageList']);
     Route::get('/create', [HomeController::class, 'pageCreate'])->middleware('isLogin');
+    Route::get('/detail/{id}',[HomeController::class, 'pageDetail']);
     Route::post('/create', [HomeController::class, 'createMemorial']);
 });
 Route::prefix('auth')->group(function () {

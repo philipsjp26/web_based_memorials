@@ -44,6 +44,6 @@
         </div>
     </section>
     <!-- slider area end -->
-
-    @include('pages.main')
+    @include('pages.main', $data);
+    
 @endsection

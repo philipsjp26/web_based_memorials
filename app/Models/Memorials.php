@@ -42,6 +42,10 @@ class Memorials extends Model
                 return 1;
             case 'Female':
                 return 2;
+            case 1:
+                return 'Male';
+            case 2:
+                return 'Female';
             default:
                 # code...
                 return 0;

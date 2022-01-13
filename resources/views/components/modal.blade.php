@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-7 col-md-7">
-                                <div class="product-details-des quick-details">
+                                <div class="product-details-des quick-details">                                    
                                     <h3 class="product-name">Philips Jose Patric</h3>
                                     <div class="ratings d-flex">
                                         <div class="pro-review" style="padding-left: 0px">
