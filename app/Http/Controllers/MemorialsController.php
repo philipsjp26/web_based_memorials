@@ -56,4 +56,16 @@ class MemorialsController extends Controller
     public function getDetail(Request $request)
     {
     }
+    public function addMoreImages(Request $request, $id)
+    {
+        $data = Memorials::find($id);
+
+        for ($i = 0; $i < count($request->file('image')); $i++) {
+            $filename = str_replace(' ', '', $request->file('image')[$i]->getClientOriginalName());
+            $path = $request->file('image')[$i]->storeAs('public/images', $filename);
+            insertIntoMemorialImages($data, $filename, $path);
+        }
+        Alert::success('Success', "Images has bean added");
+        return back();
+    }
 }

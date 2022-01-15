@@ -39,7 +39,7 @@
                                     <button class="btn btn__bg" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         Edit
                                     </button>
-                                    <button class="btn btn__primary">
+                                    <button class="btn btn__primary" data-bs-toggle="modal" data-bs-target="#exampleModalImages">
                                         Add Images
                                     </button>
                                 </div>
@@ -49,6 +49,7 @@
                     </div>
                     <!-- product details inner end -->
                     <!-- Quick view modal start -->
+
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -102,6 +103,7 @@
                         </div>
                     </div>
                     <!-- Quick view modal end -->
+                    @include('components.modal', $data)
                 </div>
                 <!-- product details wrapper end -->
             </div>
