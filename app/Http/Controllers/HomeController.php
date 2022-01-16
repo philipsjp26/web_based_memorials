@@ -32,4 +32,16 @@ class HomeController extends Controller
         $data = Memorials::with('memorialImages')->find($id);
         return view('pages.memorials.details', compact('data'));
     }
+    public function pagePlanAndFeatures()
+    {
+        return view('pages.PlanAndFeature');
+    }
+    public function pageFreemium()
+    {
+        return view('pages.detail_feature');
+    }
+    public function pageMyAccount()
+    {
+        return view('pages.myaccount');
+    }
 }

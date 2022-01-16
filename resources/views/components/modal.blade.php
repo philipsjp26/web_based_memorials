@@ -11,7 +11,7 @@
                    </div>
                    <div class="modal-body">
 
-                       <form action="/memorial/add/images/{{ $data->id }}" method="POST"
+                       <form action="/memorial/add/images/{{ $data->id ?? '' }}" method="POST"
                            enctype="multipart/form-data">
                            @csrf
                            @method('POST')

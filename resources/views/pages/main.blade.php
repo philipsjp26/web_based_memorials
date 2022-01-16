@@ -15,22 +15,23 @@
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product-item">
                                 <figure class="product-thumb">
-                                    <a href="product-details.html">
-                                        <img class="pri-img"
-                                            src="{{ url('storage/images/' . $memorial->memorialImages->first()->title) }}"
-                                            alt="product">
+                                    <a href="#">
+                                        @if ($memorial->memorialImages->first()->title)
+                                            <img class="pri-img"
+                                                src="{{ url('storage/images/' . $memorial->memorialImages->first()->title) }}"
+                                                alt="product">
+
+                                        @else
+                                            <img class="pri-img" src="#" alt="product">
+                                        @endif
+
+
                                     </a>
                                     <div class="product-badge">
                                         <div class="product-label new">
                                             <span>new</span>
                                         </div>
                                     </div>
-                                    {{-- disable modal --}}
-                                    {{-- <div id="modal_detail" class="button-group">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#quick_view"><span
-                                                data-bs-toggle="tooltip" data-bs-placement="left" title="Quick View"><i
-                                                    class="lnr lnr-magnifier"></i></span></a>
-                                    </div> --}}
                                 </figure>
                                 <div class="product-caption">
                                     <p class="product-name">

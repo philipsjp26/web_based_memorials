@@ -68,4 +68,15 @@ class MemorialsController extends Controller
         Alert::success('Success', "Images has bean added");
         return back();
     }
+    public function update(Request $request, $id)
+    {
+        $data = Memorials::find($id);
+        $data->first_name = $request->first_name;
+        $data->middle_name = $request->middle_name;
+        $data->last_name = $request->last_name;
+        $data->gender = $data->getGenderAttribute($request->gender);
+        $data->save();
+        Alert::success('Success', 'Successfully updated data');
+        return back();
+    }
 }

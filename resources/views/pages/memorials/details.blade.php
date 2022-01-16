@@ -1,4 +1,5 @@
 @extends('layouts.home')
+
 @section('content')
 
     <!-- page main wrapper start -->
@@ -36,12 +37,15 @@
                                         eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
                                         voluptua. Phasellus id nisi quis justo tempus mollis sed et dui. In hac
                                         habitasse platea dictumst.</p>
-                                    <button class="btn btn__bg" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Edit
-                                    </button>
-                                    <button class="btn btn__primary" data-bs-toggle="modal" data-bs-target="#exampleModalImages">
-                                        Add Images
-                                    </button>
+                                    @auth
+                                        <button class="btn btn__bg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Edit
+                                        </button>
+                                        <button class="btn btn__primary" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModalImages">
+                                            Add Images
+                                        </button>
+                                    @endauth
                                 </div>
                             </div>
 
@@ -63,47 +67,53 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form>
+                                    <form method="POST" action="/memorial/update/{{ $data->id }}">
+                                        @csrf
+                                        @method('PUT')
                                         <div class="form-group col-md-12">
                                             <label for="exampleInputEmail1">First name</label>
-                                            <input type="type" class="form-control" placeholder="Enter first name">
+                                            <input type="type" name="first_name" class="form-control"
+                                                placeholder="{{ $data->first_name }}">
                                         </div>
                                         <div class="form-group col-md-12">
                                             <label for="exampleInputEmail1">Middle name</label>
-                                            <input type="type" class="form-control" placeholder="Enter middle name">
+                                            <input type="type" name="middle_name" class="form-control"
+                                                placeholder="{{ $data->middle_name }}">
                                         </div>
                                         <div class="form-group col-md-12">
                                             <label for="exampleInputEmail1">Last name</label>
-                                            <input type="type" class="form-control" placeholder="Enter last name">
+                                            <input type="type" name="last_name" class="form-control"
+                                                placeholder="{{ $data->last_name }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Gender : </label>
                                             <div class="form-check">
                                                 <input name="gender" value="Male" class="form-check-input" type="radio"
-                                                    name="flexRadioDefault" id="flexRadioDefault1">
+                                                    name="flexRadioDefault" id="flexRadioDefault1" @if ($data->gender == 'Male') checked @endif>
                                                 <label class="form-check-label" for="flexRadioDefault1">
                                                     Male
                                                 </label>
                                             </div>
                                             <div class="form-check">
                                                 <input name="gender" value="Female" class="form-check-input" type="radio"
-                                                    name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                                    name="flexRadioDefault" id="flexRadioDefault2" @if ($data->gender == 'Female') checked @endif>
                                                 <label class="form-check-label" for="flexRadioDefault2">
                                                     Female
                                                 </label>
                                             </div>
                                         </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn__primary" data-dismiss="modal">Save
+                                                Changes</button>
+                                        </div>
                                     </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn__primary" data-dismiss="modal">Save
-                                        Changes</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- Quick view modal end -->
                     @include('components.modal', $data)
+                    @include('components.tab_memorial_details')
                 </div>
                 <!-- product details wrapper end -->
             </div>

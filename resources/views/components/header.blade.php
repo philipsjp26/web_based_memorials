@@ -32,7 +32,7 @@
                                                     <li><a href="/home/create">Create Memorials</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="#">Plans & Features</a>
+                                            <li><a href="/home/features">Plans & Features</a>
                                             </li>
                                             <li><a href="#">Blog</a>
                                             </li>
@@ -56,8 +56,8 @@
                                             </a>
                                             <ul class="dropdown-list">
                                                 @auth
-                                                    <li><a href="#">Hi, {{ auth()->user()->username}}</a></li>
-                                                    <li><a href="#">My Account</a></li>
+                                                    <li><a href="#">Hi, {{ auth()->user()->username }}</a></li>
+                                                    <li><a href="/home/myaccount">My Account</a></li>
                                                     <form action="/auth/logout" method="post">
                                                         @csrf
                                                         <li>

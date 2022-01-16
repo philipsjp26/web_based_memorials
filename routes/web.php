@@ -22,12 +22,19 @@ Route::get('/', [HomeController::class, 'index']);
 Route::group(['prefix' => 'memorial', 'middleware' => 'isLogin'], function () {
     Route::post('/create', [MemorialsController::class, 'create']);
     Route::post('/add/images/{id}', [MemorialsController::class, 'addMoreImages']);
+    Route::put('/update/{id}', [MemorialsController::class, 'update']);
+});
+
+Route::group(['prefix' => 'feature'], function () {
+    Route::get('/freemium', [HomeController::class, 'pageFreemium']);
 });
 
 Route::prefix('/home')->group(function () {
     Route::get('/list', [HomeController::class, 'pageList']);
+    Route::get('/features', [HomeController::class, 'pagePlanAndFeatures']);
     Route::get('/create', [HomeController::class, 'pageCreate'])->middleware('isLogin');
     Route::get('/detail/{id}', [HomeController::class, 'pageDetail']);
+    Route::get('/myaccount', [HomeController::class, 'pageMyAccount']);
     Route::post('/create', [HomeController::class, 'createMemorial']);
 });
 Route::prefix('auth')->group(function () {
