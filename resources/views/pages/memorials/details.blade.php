@@ -37,16 +37,17 @@
                                         eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
                                         voluptua. Phasellus id nisi quis justo tempus mollis sed et dui. In hac
                                         habitasse platea dictumst.</p>
-                                    @if (auth()->user()->id == $account_id)
-                                        <button class="btn btn__bg" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal">
-                                            Edit
-                                        </button>
-                                        <button class="btn btn__primary" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModalImages">
-                                            Add Images
-                                        </button>
-                                    @endif
+                                    @auth
+                                        @if (auth()->user()->id == $account_id)
+                                            <button class="btn btn__bg" data-bs-toggle="modal" data-bs-target="#modalEdit">
+                                                Edit
+                                            </button>
+                                            <button class="btn btn__primary" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModalImages">
+                                                Add Images
+                                            </button>
+                                        @endif
+                                    @endauth
                                 </div>
                             </div>
 
@@ -56,8 +57,8 @@
                     <!-- Quick view modal start -->
 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="modalEdit" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
                         <div class="modal-dialog" style="max-width: 500px" role="document">
                             <div class="modal-content">
                                 <div style="padding: 1rem 1rem; display: flex; align-items: center;" class="modal-header">
@@ -74,17 +75,17 @@
                                         <div class="form-group col-md-12">
                                             <label for="exampleInputEmail1">First name</label>
                                             <input type="type" name="first_name" class="form-control"
-                                                placeholder="{{ $data->first_name }}">
+                                                placeholder="{{ $data->first_name }}" autocomplete="off">
                                         </div>
                                         <div class="form-group col-md-12">
                                             <label for="exampleInputEmail1">Middle name</label>
                                             <input type="type" name="middle_name" class="form-control"
-                                                placeholder="{{ $data->middle_name }}">
+                                                placeholder="{{ $data->middle_name }}" autocomplete="off">
                                         </div>
                                         <div class="form-group col-md-12">
                                             <label for="exampleInputEmail1">Last name</label>
                                             <input type="type" name="last_name" class="form-control"
-                                                placeholder="{{ $data->last_name }}">
+                                                placeholder="{{ $data->last_name }}" autocomplete="off">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Gender : </label>
@@ -104,7 +105,8 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn__primary" data-dismiss="modal">Save
+                                            <button type="submit" class="btn btn__primary show_confirm"
+                                                data-dismiss="modal">Save
                                                 Changes</button>
                                         </div>
                                     </form>
@@ -120,5 +122,4 @@
             </div>
         </div>
     </div>
-    <!-- page main wrapper end -->
 @endsection

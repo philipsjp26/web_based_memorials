@@ -22,8 +22,8 @@ class MemorialsController extends Controller
             'memorial_category' => 'required',
             'image' => 'required|image|mimes:jpeg,jpg,png,|max:2048'
         ]);
-        if ($credentials->fails()) {
-            Alert::error('Error', $credentials);
+        if ($credentials->fails()) {    
+            Alert::error('Error', $credentials->errors()->first());
             return back();
         }
         try {

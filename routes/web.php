@@ -34,7 +34,7 @@ Route::prefix('/home')->group(function () {
     Route::get('/features', [HomeController::class, 'pagePlanAndFeatures']);
     Route::get('/create', [HomeController::class, 'pageCreate'])->middleware('isLogin');
     Route::get('/detail/{id}', [HomeController::class, 'pageDetail']);
-    Route::get('/myaccount', [HomeController::class, 'pageMyAccount']);
+    Route::get('/myaccount', [HomeController::class, 'pageMyAccount'])->middleware('isLogin');
     Route::post('/create', [HomeController::class, 'createMemorial']);
 });
 Route::prefix('auth')->group(function () {

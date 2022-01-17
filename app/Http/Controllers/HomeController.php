@@ -45,9 +45,13 @@ class HomeController extends Controller
     {
         return view('pages.detail_feature');
     }
-    public function pageMyAccount()
+    public function pageMyAccount(Request $request)
     {
-        $dashboard = Memorials::with('relationship', 'category')->get();
+
+        $dashboard = Memorials::with('relationship', 'category', 'accounts')
+            ->whereHas('accounts', function ($q) use ($request) {
+                $q->where("accounts_id", "=", $request->get('accounts_id'));
+            })->get();
         return view('pages.myaccount', compact('dashboard'));
     }
 }

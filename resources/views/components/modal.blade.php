@@ -22,9 +22,11 @@
                                    <input type="file" name="image[]" class="form-control" required multiple>
                                </div>
                            </div>
-                           <a href="#" id="add">Add More</a>
-                           <button type="submit" class="btn btn__primary" data-dismiss="modal">
-                               Add</button>
+                           <div class="d-flex justify-content-between">
+                               <a href="#" id="add">Add More</a>
+                               <button type="submit" class="btn btn__primary" style="border-radius: 10rem" data-dismiss="modal">
+                                   Upload</button>
+                           </div>
                        </form>
                    </div>
                </div>
