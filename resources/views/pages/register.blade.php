@@ -1,8 +1,8 @@
-@extends('layouts.home')
+@extends('layouts.auth')
 
 @section('content')
     <div class="login-register-wrapper section-space">
-        <div class="container" style="width: 40%">
+        <div class="container" style="width: 30%">
             <div class="member-area-from-wrap">
                 <div class="row">
                     <!-- Login Content Start -->
@@ -13,10 +13,10 @@
                             @csrf
                             @method('POST')
                             <div class="single-input-item">
-                                <input type="email" placeholder="Email" name="email" required />
+                                <input type="email" placeholder="Email" name="email" required autocomplete="off"/>
                             </div>
                             <div class="single-input-item">
-                                <input type="text" placeholder="Username" name="username" required />
+                                <input type="text" placeholder="Username" name="username" required autocomplete="off"/>
                             </div>
                             <div class="single-input-item">
                                 <input type="password" placeholder="Enter your Password" name="password" required />

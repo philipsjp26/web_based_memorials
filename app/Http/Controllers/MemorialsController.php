@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Memorials;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -11,7 +12,7 @@ class MemorialsController extends Controller
 {
     public function create(Request $request)
     {
-
+        // dd('Chek'.$request->get('account_id'));
         $credentials = Validator::make($request->all(), [
             'first_name' => 'required|max:255',
             'middle_name' => 'required',
@@ -27,14 +28,11 @@ class MemorialsController extends Controller
         }
         try {
 
-
             $data = new Memorials;
             $result = $data->isExist($request);
             if ($result['status'] == true) {
                 Alert::error('Error', $result['message']);
             } else {
-                $imageName = time() . '.' . $request->image->extension();
-                $path = $request->image->storeAs('public/images', $imageName);
                 $data->first_name = $request->first_name;
                 $data->middle_name = $request->middle_name;
                 $data->last_name = $request->last_name;
@@ -42,9 +40,12 @@ class MemorialsController extends Controller
                 $data->gender = $data->getGenderAttribute($request->gender);
                 $data->relationship_id = $request->relationship;
                 $data->category_id = $request->memorial_category;
+                $imageName = time() . '.' . $request->image->extension();
+                $path = $request->image->storeAs('public/images', $imageName);
                 $data->save();
+                $data->accounts()->attach($request->get('accounts_id'));
 
-                insertIntoMemorialImages($data, $imageName, $path);
+                $data->createMemorialImages($imageName, $path);
                 Alert::success('Success', 'Memorial has been created');
             }
             return back();

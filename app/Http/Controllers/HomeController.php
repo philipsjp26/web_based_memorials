@@ -42,6 +42,7 @@ class HomeController extends Controller
     }
     public function pageMyAccount()
     {
-        return view('pages.myaccount');
+        $dashboard = Memorials::with('relationship', 'category')->get();
+        return view('pages.myaccount', compact('dashboard'));
     }
 }

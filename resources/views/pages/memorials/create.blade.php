@@ -15,28 +15,28 @@
                                 <div class="col">
                                     <label class="col-form-label"><span class="text-danger">*</span>
                                         First Name</label>
-                                    <input name="first_name" type="text" class="form-control" required>
+                                    <input name="first_name" type="text" class="form-control" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col">
                                     <label class="col-form-label">
                                         Middle Name</label>
-                                    <input name="middle_name" type="text" class="form-control">
+                                    <input name="middle_name" type="text" class="form-control" autocomplete="off">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col">
                                     <label class="col-form-label"><span class="text-danger">*</span>
                                         Last Name</label>
-                                    <input name="last_name" type="text" class="form-control" required>
+                                    <input name="last_name" type="text" class="form-control" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col">
                                     <label class="col-form-label"><span class="text-danger">*</span>
                                         NIK ( Nomor Induk Kependudukan )</label>
-                                    <input name="nik" type="text" class="form-control" required>
+                                    <input name="nik" type="text" class="form-control" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="form-group row">

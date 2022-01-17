@@ -15,13 +15,13 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-4">
                                     <div class="myaccount-tab-menu nav" role="tablist">
-                                        <a href="#dashboad" class="active" data-bs-toggle="tab"><i
+                                        <a href="#dashboard" class="active" data-bs-toggle="tab"><i
                                                 class="fa fa-dashboard"></i>
                                             Dashboard</a>
                                         <a href="#orders" data-bs-toggle="tab"><i class="fa fa-cart-arrow-down"></i>
                                             Orders</a>
-                                        <a href="#download" data-bs-toggle="tab"><i class="fa fa-cloud-download"></i>
-                                            Download</a>
+                                        {{-- <a href="#download" data-bs-toggle="tab"><i class="fa fa-cloud-download"></i>
+                                            Download</a> --}}
                                         <a href="#payment-method" data-bs-toggle="tab"><i class="fa fa-credit-card"></i>
                                             Payment
                                             Method</a>
@@ -38,18 +38,40 @@
                                 <div class="col-lg-9 col-md-8">
                                     <div class="tab-content" id="myaccountContent">
                                         <!-- Single Tab Content Start -->
-                                        <div class="tab-pane fade show active" id="dashboad" role="tabpanel">
+                                        <div class="tab-pane fade show active" id="dashboard" role="tabpanel">
                                             <div class="myaccount-content">
                                                 <h3>Dashboard</h3>
-                                                <div class="welcome">
-                                                    <p>Hello, <strong>Erik Jhonson</strong> (If Not <strong>Jhonson
-                                                            !</strong><a href="login-register.html" class="logout">
-                                                            Logout</a>)</p>
+                                                <div class="myaccount-table table-responsive text-center">
+                                                    <table class="table table-bordered">
+                                                        <thead class="thead-light">
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Name</th>
+                                                                <th>Gender</th>
+                                                                <th>Relationship</th>
+                                                                <th>Category</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($dashboard as $item)
+                                                                <tr>
+                                                                    <td>{{ $item->id }}</td>
+                                                                    <td>{{ $item->first_name }}</td>
+                                                                    <td>{{ $item->gender }}</td>
+                                                                    <td>{{ $item->relationship_id }}</td>
+                                                                    <td>{{ $item->category_id }}</td>
+                                                                    <td class="d-flex justify-content-evenly">
+                                                                        <a href="#" class="btn btn__warning"
+                                                                            style="border-radius: 10%">Edit</a>
+                                                                        <a href="#" class="btn btn__bg"
+                                                                            style="border-radius: 10%">Delete</a>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
                                                 </div>
-                                                <p class="mb-0">From your account dashboard. you can easily check
-                                                    &
-                                                    view your recent orders, manage your shipping and billing addresses
-                                                    and edit your password and account details.</p>
                                             </div>
                                         </div>
                                         <!-- Single Tab Content End -->
@@ -93,44 +115,6 @@
                                                                 <td>$990</td>
                                                                 <td><a href="cart.html" class="btn btn__bg">View</a>
                                                                 </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Tab Content End -->
-
-                                        <!-- Single Tab Content Start -->
-                                        <div class="tab-pane fade" id="download" role="tabpanel">
-                                            <div class="myaccount-content">
-                                                <h3>Downloads</h3>
-                                                <div class="myaccount-table table-responsive text-center">
-                                                    <table class="table table-bordered">
-                                                        <thead class="thead-light">
-                                                            <tr>
-                                                                <th>Product</th>
-                                                                <th>Date</th>
-                                                                <th>Expire</th>
-                                                                <th>Download</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>Flowers daisy pink stick</td>
-                                                                <td>Aug 22, 2019</td>
-                                                                <td>Yes</td>
-                                                                <td><a href="#" class="btn btn__bg"><i
-                                                                            class="fa fa-cloud-download"></i>
-                                                                        Download File</a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Orchid flower red stick</td>
-                                                                <td>Sep 12, 2019</td>
-                                                                <td>Never</td>
-                                                                <td><a href="#" class="btn btn__bg"><i
-                                                                            class="fa fa-cloud-download"></i>
-                                                                        Download File</a></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>

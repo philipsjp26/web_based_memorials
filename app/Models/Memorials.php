@@ -29,10 +29,15 @@ class Memorials extends Model
         if ($nikIsExists) {
             $returnArray['status'] = true;
             $returnArray['message'] = 'Data already exist';
-        }else {
+        } else {
             $returnArray['status'] = false;
         }
         return $returnArray;
+    }
+    public function createMemorialImages($image_name, $path)
+    {
+        $temp = array('title' => $image_name, 'url' => $path);
+        $this->memorialImages()->create($temp);
     }
     public function getGenderAttribute($gender)
     {
@@ -54,5 +59,17 @@ class Memorials extends Model
     public function memorialImages()
     {
         return $this->hasMany(MemorialImages::class, 'memorial_id');
+    }
+    public function relationship()
+    {
+        return $this->belongsTo(Relationship::class);
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+    public function accounts()
+    {
+        return $this->belongsToMany(Account::class, 'memorials_accounts', 'memorials_id', 'accounts_id');
     }
 }

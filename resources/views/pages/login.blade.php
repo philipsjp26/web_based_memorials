@@ -1,8 +1,8 @@
-@extends('layouts.home')
+@extends('layouts.auth')
 
 @section('content')
     <div class="login-register-wrapper section-space">
-        <div class="container" style="width: 40%">
+        <div class="container" style="width: 25%">
             <div class="member-area-from-wrap">
                 <div class="row">
                     <!-- Login Content Start -->

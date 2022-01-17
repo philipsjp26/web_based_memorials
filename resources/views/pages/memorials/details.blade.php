@@ -37,7 +37,7 @@
                                         eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
                                         voluptua. Phasellus id nisi quis justo tempus mollis sed et dui. In hac
                                         habitasse platea dictumst.</p>
-                                    @auth
+                                    {{-- @auth
                                         <button class="btn btn__bg" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             Edit
                                         </button>
@@ -45,7 +45,7 @@
                                             data-bs-target="#exampleModalImages">
                                             Add Images
                                         </button>
-                                    @endauth
+                                    @endauth --}}
                                 </div>
                             </div>
 
