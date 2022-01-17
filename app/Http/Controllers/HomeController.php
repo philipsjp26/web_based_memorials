@@ -29,8 +29,13 @@ class HomeController extends Controller
     }
     public function pageDetail($id)
     {
-        $data = Memorials::with('memorialImages')->find($id);
-        return view('pages.memorials.details', compact('data'));
+        $data = Memorials::with('memorialImages', 'accounts')->find($id);
+        $account_id = NULL;
+        foreach ($data->accounts as $account) {
+            # code..
+            $account_id = $account->pivot->accounts_id;
+        }
+        return view('pages.memorials.details', compact('data', 'account_id'));
     }
     public function pagePlanAndFeatures()
     {

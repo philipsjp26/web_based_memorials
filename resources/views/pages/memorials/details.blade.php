@@ -37,15 +37,16 @@
                                         eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
                                         voluptua. Phasellus id nisi quis justo tempus mollis sed et dui. In hac
                                         habitasse platea dictumst.</p>
-                                    {{-- @auth
-                                        <button class="btn btn__bg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    @if (auth()->user()->id == $account_id)
+                                        <button class="btn btn__bg" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">
                                             Edit
                                         </button>
                                         <button class="btn btn__primary" data-bs-toggle="modal"
                                             data-bs-target="#exampleModalImages">
                                             Add Images
                                         </button>
-                                    @endauth --}}
+                                    @endif
                                 </div>
                             </div>
 

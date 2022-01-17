@@ -54,15 +54,19 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            @php
+                                                                $no = 1;
+                                                            @endphp
                                                             @foreach ($dashboard as $item)
                                                                 <tr>
-                                                                    <td>{{ $item->id }}</td>
+                                                                    <td>{{ $no++ }}</td>
                                                                     <td>{{ $item->first_name }}</td>
                                                                     <td>{{ $item->gender }}</td>
-                                                                    <td>{{ $item->relationship_id }}</td>
-                                                                    <td>{{ $item->category_id }}</td>
+                                                                    <td>{{ $item->relationship->name }}</td>
+                                                                    <td>{{ $item->category->name }}</td>
                                                                     <td class="d-flex justify-content-evenly">
-                                                                        <a href="#" class="btn btn__warning"
+                                                                        <a href="detail/{{ $item->id }}"
+                                                                            class="btn btn__warning"
                                                                             style="border-radius: 10%">Edit</a>
                                                                         <a href="#" class="btn btn__bg"
                                                                             style="border-radius: 10%">Delete</a>
