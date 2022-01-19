@@ -56,6 +56,10 @@ class Memorials extends Model
                 return 0;
         }
     }
+    public function memorialDescription()
+    {
+        return $this->hasOne(MemorialDescription::class, 'memorial_id');
+    }
     public function memorialImages()
     {
         return $this->hasMany(MemorialImages::class, 'memorial_id');

@@ -21,11 +21,12 @@
                                     </div>
                                 </div>
                                 <div class="pro-nav slick-row-10 slick-arrow-style">
-                                    <div class="pro-nav-thumb">
-                                        <img src="{{ url('storage/images/' . $data->memorialImages->first()->title) }}"
-                                            alt="product-details" />
-                                    </div>
-
+                                    @foreach ($data->memorialImages as $item)
+                                        <div class="pro-nav-thumb">
+                                            <img src="{{ url('storage/images/' . $item->title) }}"
+                                                alt="product-details" />
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="col-lg-7">
@@ -37,9 +38,11 @@
                                         eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
                                         voluptua. Phasellus id nisi quis justo tempus mollis sed et dui. In hac
                                         habitasse platea dictumst.</p>
+
                                     @auth
                                         @if (auth()->user()->id == $account_id)
-                                            <button class="btn btn__bg" data-bs-toggle="modal" data-bs-target="#modalEdit">
+                                            <button class="btn btn__bg" style="margin-right: 10px" data-bs-toggle="modal"
+                                                data-bs-target="#modalEdit">
                                                 Edit
                                             </button>
                                             <button class="btn btn__primary" data-bs-toggle="modal"
@@ -102,6 +105,11 @@
                                                 <label class="form-check-label" for="flexRadioDefault2">
                                                     Female
                                                 </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">About</label>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="7">
+                                                    </textarea>
                                             </div>
                                         </div>
                                         <div class="modal-footer">

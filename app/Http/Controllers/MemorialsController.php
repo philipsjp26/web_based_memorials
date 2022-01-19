@@ -20,9 +20,11 @@ class MemorialsController extends Controller
             'gender' => 'required',
             'relationship' => 'required',
             'memorial_category' => 'required',
-            'image' => 'required|image|mimes:jpeg,jpg,png,|max:2048'
+            'image' => 'required|image|mimes:jpeg,jpg,png,|max:2048',
+            'description' => 'nullable',
+            'life' => 'nullable'
         ]);
-        if ($credentials->fails()) {    
+        if ($credentials->fails()) {
             Alert::error('Error', $credentials->errors()->first());
             return back();
         }
@@ -44,7 +46,10 @@ class MemorialsController extends Controller
                 $path = $request->image->storeAs('public/images', $imageName);
                 $data->save();
                 $data->accounts()->attach($request->get('accounts_id'));
-
+                if ($request->description != null || $request->life != null) {
+                    $temp = array('description' => $request->description, 'life' => $request->life);
+                    $data->memorialDescription()->create($temp);
+                }
                 $data->createMemorialImages($imageName, $path);
                 Alert::success('Success', 'Memorial has been created');
             }
