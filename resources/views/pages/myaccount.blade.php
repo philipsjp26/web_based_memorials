@@ -18,18 +18,23 @@
                                         <a href="#dashboard" class="active" data-bs-toggle="tab"><i
                                                 class="fa fa-dashboard"></i>
                                             Dashboard</a>
-                                        <a href="#orders" data-bs-toggle="tab"><i class="fa fa-cart-arrow-down"></i>
-                                            Orders</a>
+                                        {{-- <a href="#orders" data-bs-toggle="tab"><i class="fa fa-cart-arrow-down"></i>
+                                            Orders</a> --}}
                                         {{-- <a href="#download" data-bs-toggle="tab"><i class="fa fa-cloud-download"></i>
                                             Download</a> --}}
-                                        <a href="#payment-method" data-bs-toggle="tab"><i class="fa fa-credit-card"></i>
+                                        {{-- <a href="#payment-method" data-bs-toggle="tab"><i class="fa fa-credit-card"></i>
                                             Payment
-                                            Method</a>
-                                        <a href="#address-edit" data-bs-toggle="tab"><i class="fa fa-map-marker"></i>
-                                            address</a>
+                                            Method</a> --}}
+                                        {{-- <a href="#address-edit" data-bs-toggle="tab"><i class="fa fa-map-marker"></i>
+                                            address</a> --}}
                                         <a href="#account-info" data-bs-toggle="tab"><i class="fa fa-user"></i> Account
                                             Details</a>
-                                        <a href="login-register.html"><i class="fa fa-sign-out"></i> Logout</a>
+                                        <form id="form1" action="/auth/logout" method="post">
+                                            @csrf
+                                            @method('POST')
+                                            <a href="javascript:;" onclick="document.getElementById('form1').submit();"><i
+                                                    class="fa fa-sign-out"></i> Logout</a>
+                                        </form>
                                     </div>
                                 </div>
                                 <!-- My Account Tab Menu End -->
@@ -128,16 +133,16 @@
                                         <!-- Single Tab Content End -->
 
                                         <!-- Single Tab Content Start -->
-                                        <div class="tab-pane fade" id="payment-method" role="tabpanel">
+                                        {{-- <div class="tab-pane fade" id="payment-method" role="tabpanel">
                                             <div class="myaccount-content">
                                                 <h3>Payment Method</h3>
                                                 <p class="saved-message">You Can't Saved Your Payment Method yet.</p>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <!-- Single Tab Content End -->
 
                                         <!-- Single Tab Content Start -->
-                                        <div class="tab-pane fade" id="address-edit" role="tabpanel">
+                                        {{-- <div class="tab-pane fade" id="address-edit" role="tabpanel">
                                             <div class="myaccount-content">
                                                 <h3>Billing Address</h3>
                                                 <address>
@@ -149,7 +154,7 @@
                                                 <a href="#" class="btn btn__bg"><i class="fa fa-edit"></i>
                                                     Edit Address</a>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <!-- Single Tab Content End -->
 
                                         <!-- Single Tab Content Start -->

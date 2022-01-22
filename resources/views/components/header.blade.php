@@ -50,6 +50,12 @@
                             <div class="header-configure-wrapper">
                                 <div class="header-configure-area">
                                     <ul class="nav justify-content-end">
+                                        <li>
+                                            <a href="#" class="offcanvas-btn">
+                                                <i class="lnr lnr-magnifier"></i>
+                                            </a>
+                                            @include('components.search')
+                                        </li>
                                         <li class="user-hover">
                                             <a href="/">
                                                 <i class="lnr lnr-user"></i>
