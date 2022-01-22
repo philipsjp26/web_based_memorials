@@ -30,10 +30,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="hero-slider-content slide-2">
-                                    <span>Forever missed/span>
-                                        <h1>Fresh Your Mind</h1>
-                                        <h2>& Feeling love</h2>
-                                        <a href="shop.html" class="btn-hero">Get started</a>
+                                    <span>Forever missed</span>
+                                    <h1>Fresh Your Mind</h1>
+                                    <h2>& Feeling love</h2>
+                                    <a href="shop.html" class="btn-hero">Get started</a>
                                 </div>
                             </div>
                         </div>
@@ -45,5 +45,5 @@
     </section>
     <!-- slider area end -->
     @include('pages.main', $data);
-    
+
 @endsection

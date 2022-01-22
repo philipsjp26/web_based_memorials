@@ -10,8 +10,8 @@
                         <!-- start logo area -->
                         <div class="col-lg-3">
                             <div class="logo">
-                                <a href="index.html">
-                                    <img src={{ asset('img/logo/logo.png') }} alt="">
+                                <a href="/">
+                                    <img src={{ asset('img/logo/dooka.png') }} alt="">
                                 </a>
                             </div>
                         </div>

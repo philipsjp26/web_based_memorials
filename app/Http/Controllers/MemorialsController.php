@@ -20,9 +20,7 @@ class MemorialsController extends Controller
             'gender' => 'required',
             'relationship' => 'required',
             'memorial_category' => 'required',
-            'image' => 'required|image|mimes:jpeg,jpg,png,|max:2048',
-            'description' => 'nullable',
-            'life' => 'nullable'
+            'image' => 'required|image|mimes:jpeg,jpg,png,|max:2048'
         ]);
         if ($credentials->fails()) {
             Alert::error('Error', $credentials->errors()->first());
@@ -31,6 +29,7 @@ class MemorialsController extends Controller
         try {
 
             $data = new Memorials;
+
             $result = $data->isExist($request);
             if ($result['status'] == true) {
                 Alert::error('Error', $result['message']);
@@ -46,10 +45,6 @@ class MemorialsController extends Controller
                 $path = $request->image->storeAs('public/images', $imageName);
                 $data->save();
                 $data->accounts()->attach($request->get('accounts_id'));
-                if ($request->description != null || $request->life != null) {
-                    $temp = array('description' => $request->description, 'life' => $request->life);
-                    $data->memorialDescription()->create($temp);
-                }
                 $data->createMemorialImages($imageName, $path);
                 Alert::success('Success', 'Memorial has been created');
             }
@@ -76,12 +71,24 @@ class MemorialsController extends Controller
     }
     public function update(Request $request, $id)
     {
+
+        $credentials = Validator::make($request->all(), [
+            'first_name' => 'nullable|max:255',
+            'middle_name' => 'nullable',
+            'last_name' => 'nullable',
+        ]);
+        $description = $request->description || $request->life ? array('description' => $request->description, 'life' => $request->life) : null;
+
+        if ($credentials->fails()) {
+            Alert::error('Error', $credentials->errors()->first());
+            return back();
+        }
         $data = Memorials::find($id);
         $data->first_name = $request->first_name;
         $data->middle_name = $request->middle_name;
         $data->last_name = $request->last_name;
         $data->gender = $data->getGenderAttribute($request->gender);
-        $data->save();
+        if (!is_null($description)) create_or_update_memorial_description($data, $description);
         Alert::success('Success', 'Successfully updated data');
         return back();
     }

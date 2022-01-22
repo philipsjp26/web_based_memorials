@@ -9,7 +9,7 @@
                 <!-- product details wrapper start -->
                 <div class="col-lg-12 order-1 order-lg-2">
                     <!-- product details inner end -->
-
+                    {{-- {{ dd($data->memorialDescription->description)}} --}}
                     <div class="product-details-inner">
                         <div class="row">
                             <div class="col-lg-5">
@@ -108,8 +108,18 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">About</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="7">
-                                                    </textarea>
+                                                <textarea name="description" class="form-control"
+                                                    id="exampleFormControlTextarea1" cols="30" rows="10">
+                                                            @if ($data->memorialDescription)
+                                                                {{ $data->memorialDescription->description }}
+                                                            @endif
+                                                            </textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea2">Life</label>
+                                                <textarea name="life" class="form-control" id="" cols="30" rows="10">
+                                                    {{ $data->memorialDescription ? $data->memorialDescription->life : ""}}
+                                                </textarea>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -124,7 +134,7 @@
                     </div>
                     <!-- Quick view modal end -->
                     @include('components.modal', $data)
-                    @include('components.tab_memorial_details')
+                    @include('components.tab_memorial_details', $data)
                 </div>
                 <!-- product details wrapper end -->
             </div>

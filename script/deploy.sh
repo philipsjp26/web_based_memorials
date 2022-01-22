@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+composer install
 php artisan migrate
 
 if [[ $? != 0 ]]; then

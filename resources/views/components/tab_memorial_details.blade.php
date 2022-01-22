@@ -17,31 +17,12 @@
                 <div class="tab-content reviews-tab">
                     <div class="tab-pane fade show active" id="tab_one">
                         <div class="tab-one">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                                fringilla augue nec est tristique auctor. Ipsum metus feugiat
-                                sem, quis fermentum turpis eros eget velit. Donec ac tempus
-                                ante. Fusce ultricies massa massa. Fusce aliquam, purus eget
-                                sagittis vulputate, sapien libero hendrerit est, sed commodo
-                                augue nisi non neque.Cras neque metus, consequat et blandit et,
-                                luctus a nunc. Etiam gravida vehicula tellus, in imperdiet
-                                ligula euismod eget. Pellentesque habitant morbi tristique
-                                senectus et netus et malesuada fames ac turpis egestas. Nam
-                                erat mi, rutrum at sollicitudin rhoncus</p>
+                            <p>{{ $data->memorialDescription ? $data->memorialDescription->description : ''  }}</p>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab_two">
-                        <table class="table table-bordered">
-                            <tbody>
-                                <tr>
-                                    <td>color</td>
-                                    <td>black, blue, red</td>
-                                </tr>
-                                <tr>
-                                    <td>size</td>
-                                    <td>L, M, S</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <p>{{ $data->memorialDescription ? $data->memorialDescription->life : ''  }}</p>
+
                     </div>
                     <div class="tab-pane fade" id="tab_three">
                         <form action="#" class="review-form">
