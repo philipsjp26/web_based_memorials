@@ -9,16 +9,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div id="dataList" class="row">
                     <!-- product single item start -->
+
                     @foreach ($data as $memorial)
+
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product-item">
                                 <figure class="product-thumb">
                                     <a href="#">
-                                        @if ($memorial->memorialImages->first()->title)
+                                        @if ($memorial['memorial_images'][0]['title'])
                                             <img class="pri-img"
-                                                src="{{ url('storage/images/' . $memorial->memorialImages->first()->title) }}"
+                                                src="{{ url('storage/images/' . $memorial['memorial_images'][0]['title']) }}"
                                                 alt="product">
 
                                         @else
@@ -36,7 +38,7 @@
                                 <div class="product-caption">
                                     <p class="product-name">
                                         <a
-                                            href="home/detail/{{ $memorial->id }}">{{ $memorial->first_name . ' ' . $memorial->middle_name . ' ' . $memorial->last_name }}</a>
+                                            href="home/detail/{{ $memorial['id'] }}">{{ $memorial['first_name'] . ' ' . $memorial['middle_name'] . ' ' . $memorial['last_name'] }}</a>
                                     </p>
                                     <div class="price-box">
                                         <span class="price-old" style="padding-left: 0px">1999-05-29</span>
@@ -53,4 +55,5 @@
                 </div>
             </div>
         </section>
+
         <!-- our product area end -->

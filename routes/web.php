@@ -31,6 +31,7 @@ Route::group(['prefix' => 'feature'], function () {
 
 Route::prefix('/home')->group(function () {
     Route::get('/list', [HomeController::class, 'pageList']);
+    Route::get('/search', [HomeController::class, 'searching'])->name('search');
     Route::get('/features', [HomeController::class, 'pagePlanAndFeatures']);
     Route::get('/create', [HomeController::class, 'pageCreate'])->middleware('isLogin');
     Route::get('/detail/{id}', [HomeController::class, 'pageDetail']);

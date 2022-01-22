@@ -14,9 +14,17 @@ class HomeController extends Controller
 
     public function index()
     {
-        $data = Memorials::with('memorialImages')->get();
+        $data = Memorials::with('memorialImages')->paginate();
         return view('components.slider', compact('data'));
     }
+
+    public function searching(Request $request)
+    {
+        $data = new Memorials;
+        $data = $data->search($request->q)->paginate();
+        return view('components.slider', compact('data'));
+    }
+
     public function pageList()
     {
         return view('pages.list');

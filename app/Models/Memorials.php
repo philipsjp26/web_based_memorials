@@ -56,6 +56,13 @@ class Memorials extends Model
                 return 0;
         }
     }
+    public function search($q)
+    {
+        return self::with('memorialImages')
+            ->where('first_name', 'LIKE', "%$q%")
+            ->orWhere('middle_name', 'LIKE', "%$q%")
+            ->orWhere('last_name', 'LIKE', "%$q%");
+    }
     public function memorialDescription()
     {
         return $this->hasOne(MemorialDescription::class, 'memorial_id');

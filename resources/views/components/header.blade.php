@@ -34,8 +34,6 @@
                                             </li>
                                             <li><a href="/home/features">Plans & Features</a>
                                             </li>
-                                            <li><a href="#">Blog</a>
-                                            </li>
                                             <li><a href="#">Contact us</a></li>
                                         </ul>
                                     </nav>

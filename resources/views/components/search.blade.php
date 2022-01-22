@@ -6,9 +6,9 @@
            </div>
            <div class="container">
                <div class="offcanvas-search-box">
-                   <form class="d-flex bdr-bottom w-100">
-                       <input type="text" placeholder="Search entire storage here...">
-                       <button class="search-btn"><i class="lnr lnr-magnifier"></i>search</button>
+                   <form method="GET" action="{{ route('search') }}" class="d-flex bdr-bottom w-100">
+                       <input type="text" name="q" placeholder="Search your memorial" autocomplete="off">
+                       <button class="submit"><i class="lnr lnr-magnifier"></i>search</button>
                    </form>
                </div>
            </div>
