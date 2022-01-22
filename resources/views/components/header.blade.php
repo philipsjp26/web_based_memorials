@@ -11,7 +11,7 @@
                         <div class="col-lg-3">
                             <div class="logo">
                                 <a href="/">
-                                    <img src={{ asset('img/logo/dooka.png') }} alt="">
+                                    <img width="95px" height="29px" src={{ asset('img/logo/dooka.png') }} alt="">
                                 </a>
                             </div>
                         </div>
