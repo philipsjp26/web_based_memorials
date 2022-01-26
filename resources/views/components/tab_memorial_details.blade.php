@@ -11,26 +11,27 @@
                         <a data-bs-toggle="tab" href="#tab_two">life</a>
                     </li>
                     <li>
-                        <a data-bs-toggle="tab" href="#tab_three">gallery</a>
+                        <a data-bs-toggle="tab" href="#tab_three">review</a>
+                    </li>
+                    <li>
+                        <a data-bs-toggle="tab" href="#tab_four">gallery</a>
+
                     </li>
                 </ul>
                 <div class="tab-content reviews-tab">
                     <div class="tab-pane fade show active" id="tab_one">
                         <div class="tab-one">
-                            <p>{{ $data->memorialDescription ? $data->memorialDescription->description : ''  }}</p>
+                            <p>{{ $data->memorialDescription ? $data->memorialDescription->description : '' }}</p>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab_two">
-                        <p>{{ $data->memorialDescription ? $data->memorialDescription->life : ''  }}</p>
+                        <p>{{ $data->memorialDescription ? $data->memorialDescription->life : '' }}</p>
 
                     </div>
                     <div class="tab-pane fade" id="tab_three">
-                        <form action="#" class="review-form">
+                        <div class="review-form">
                             <h5>1 review for <span>Chaz Kangeroo</span></h5>
                             <div class="total-reviews">
-                                <div class="rev-avatar">
-                                    <img src="assets/img/about/avatar.jpg" alt="">
-                                </div>
                                 <div class="review-box">
                                     <div class="ratings">
                                         <span class="good"><i class="fa fa-star"></i></span>
@@ -49,28 +50,22 @@
                                         accumsan lacus</p>
                                 </div>
                             </div>
+                        </div>
+                        <form action="/reviews/create" method="POST" class="review-form">
+                            @csrf
+                            @method('POST')
                             <div class="form-group row">
                                 <div class="col">
                                     <label class="col-form-label"><span class="text-danger">*</span>
                                         Your Name</label>
-                                    <input type="text" class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col">
-                                    <label class="col-form-label"><span class="text-danger">*</span>
-                                        Your Email</label>
-                                    <input type="email" class="form-control" required>
+                                    <input type="text" name="username" class="form-control" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col">
                                     <label class="col-form-label"><span class="text-danger">*</span>
                                         Your Review</label>
-                                    <textarea class="form-control" required></textarea>
-                                    <div class="help-block pt-10"><span class="text-danger">Note:</span>
-                                        HTML is not translated!
-                                    </div>
+                                    <textarea name="comments" class="form-control" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -91,9 +86,15 @@
                                 </div>
                             </div>
                             <div class="buttons">
-                                <button class="sqr-btn" type="submit">Continue</button>
+                                <button name="memorial_id" value={{ $data->id }} class="sqr-btn btn__primary"
+                                    type="submit">Submit</button>
                             </div>
                         </form> <!-- end of review-form -->
+                    </div>
+                    <div class="tab-pane fade" id="tab_four">
+                        <div class="d-flex flex-wrap">
+                            gallery
+                        </div>
                     </div>
                 </div>
             </div>

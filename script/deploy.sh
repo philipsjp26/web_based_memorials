@@ -8,5 +8,5 @@ if [[ $? != 0 ]]; then
     echo 
     php artisan migrate
 fi
-
 php artisan db:seed
+php artisan optimize

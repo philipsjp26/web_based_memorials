@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemorialsController;
+use App\Http\Controllers\ReviewsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,11 @@ Route::group(['prefix' => 'memorial', 'middleware' => 'isLogin'], function () {
 
 Route::group(['prefix' => 'feature'], function () {
     Route::get('/freemium', [HomeController::class, 'pageFreemium']);
+});
+
+Route::group(['prefix' => 'reviews'], function () {
+    // Route::get('/list', [ReviewsController::class, 'index']);
+    Route::post('/create', [ReviewsController::class, 'create']);
 });
 
 Route::prefix('/home')->group(function () {
