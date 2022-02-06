@@ -14,9 +14,8 @@ class MemorialImages extends Model
         'updated_at' => 'datetime:Y-m-d H:m:s'
     ];
     protected $fillable = [
-        'memorial_id','title', 'url'
+        'memorial_id', 'title', 'url'
     ];
-
     public function memorial()
     {
         return $this->belongsTo(Memorials::class);

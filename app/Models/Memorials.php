@@ -19,7 +19,7 @@ class Memorials extends Model
     ];
     protected $fillable = [
         'id',
-        'first_name', 'middle_name', 'last_name',
+        'first_name', 'middle_name', 'last_name','date_of_birth', 'date_of_death',
         'nik', 'gender', 'relationship_id', 'category_id'
     ];
 
@@ -82,5 +82,9 @@ class Memorials extends Model
     public function accounts()
     {
         return $this->belongsToMany(Account::class, 'memorials_accounts', 'memorials_id', 'accounts_id');
+    }
+    public function reviews()
+    {
+        return $this->belongsToMany(Reviews::class, 'memorials_reviews', 'memorial_id', 'review_id');
     }
 }

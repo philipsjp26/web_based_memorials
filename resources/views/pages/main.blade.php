@@ -11,14 +11,12 @@
                 </div>
                 <div id="dataList" class="row">
                     <!-- product single item start -->
-
                     @foreach ($data as $memorial)
-
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product-item">
                                 <figure class="product-thumb">
                                     <a href="#">
-                                        @if ($memorial['memorial_images'][0]['title'])
+                                        @if (count($memorial['memorial_images']) > 0)
                                             <img class="pri-img"
                                                 src="{{ url('storage/images/' . $memorial['memorial_images'][0]['title']) }}"
                                                 alt="product">
@@ -41,7 +39,8 @@
                                             href="home/detail/{{ $memorial['id'] }}">{{ $memorial['first_name'] . ' ' . $memorial['middle_name'] . ' ' . $memorial['last_name'] }}</a>
                                     </p>
                                     <div class="price-box">
-                                        <span class="price-old" style="padding-left: 0px">1999-05-29</span>
+                                        <span class="price-old"
+                                            style="padding-left: 0px">{{ date('Y', strtotime($memorial['date_of_birth'])) . ' - ' . date('Y', strtotime($memorial['date_of_death'])) }}</span>
                                     </div>
                                 </div>
                             </div>

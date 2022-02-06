@@ -80,6 +80,22 @@
                             <div class="form-group row">
                                 <div class="col">
                                     <label class="col-form-label"><span class="text-danger">*</span>
+                                        Date Of Birth</label>
+                                    <input name="date_of_birth" type="text" class="form-control" placeholder="yyyy-mm-dd" autocomplete="off"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col">
+                                    <label class="col-form-label"><span class="text-danger">*</span>
+                                        Date of Death</label>
+                                    <input name="date_of_death" type="text" class="form-control" placeholder="yyyy-mm-dd" autocomplete="off"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col">
+                                    <label class="col-form-label"><span class="text-danger">*</span>
                                         Images</label>
                                     <input type="file" name="image" class="form-control" required multiple>
                                 </div>

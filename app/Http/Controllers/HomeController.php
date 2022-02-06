@@ -37,7 +37,7 @@ class HomeController extends Controller
     }
     public function pageDetail($id)
     {
-        $data = Memorials::with('memorialImages', 'accounts', 'memorialDescription')->find($id);
+        $data = Memorials::with('memorialImages', 'accounts', 'memorialDescription', 'reviews')->find($id);
         $account_id = NULL;
         foreach ($data->accounts as $account) {
             # code..

@@ -30,26 +30,32 @@
                     </div>
                     <div class="tab-pane fade" id="tab_three">
                         <div class="review-form">
-                            <h5>1 review for <span>Chaz Kangeroo</span></h5>
-                            <div class="total-reviews">
-                                <div class="review-box">
-                                    <div class="ratings">
-                                        <span class="good"><i class="fa fa-star"></i></span>
-                                        <span class="good"><i class="fa fa-star"></i></span>
-                                        <span class="good"><i class="fa fa-star"></i></span>
-                                        <span class="good"><i class="fa fa-star"></i></span>
-                                        <span><i class="fa fa-star"></i></span>
+                            @foreach ($data->reviews as $review)
+
+                                <h5>review from <span>{{ $review->username }}</span></h5>
+                                <div class="total-reviews">
+                                    <div class="review-box">
+                                        <div class="ratings">
+                                            {{-- @for ($i = 1; $i <= $review->rating; $i++)
+                                                <span><i class="fas fa-hanukiah"></i></span>
+                                            @endfor --}}
+                                            @if ($review->rating == 1)
+                                                <span><i class="fas fa-church fa-3x" style="color: #532459"></i></span>
+                                            @elseif($review->rating == 2)
+                                                <span> <i class="fas fa-hanukiah fa-3x"
+                                                        style="color: #532459"></i></span>
+                                            @elseif($review->rating == 3)
+                                                <span> <i class="fas fa-pencil-alt fa-3x"
+                                                        style="color: #532459"></i></span>
+                                            @endif
+                                        </div>
+                                        <div class="post-author">
+                                            <p><span>{{ $review->username }} -</span> {{ $review->created_at }}</p>
+                                        </div>
+                                        <p>{{ $review->comments }}</p>
                                     </div>
-                                    <div class="post-author">
-                                        <p><span>admin -</span> 30 Mar, 2019</p>
-                                    </div>
-                                    <p>Aliquam fringilla euismod risus ac bibendum. Sed sit
-                                        amet sem varius ante feugiat lacinia. Nunc ipsum nulla,
-                                        vulputate ut venenatis vitae, malesuada ut mi. Quisque
-                                        iaculis, dui congue placerat pretium, augue erat
-                                        accumsan lacus</p>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
                         <form action="/reviews/create" method="POST" class="review-form">
                             @csrf
@@ -72,17 +78,18 @@
                                 <div class="col">
                                     <label class="col-form-label"><span class="text-danger">*</span>
                                         Rating</label>
-                                    &nbsp;&nbsp;&nbsp; Bad&nbsp;
-                                    <input type="radio" value="1" name="rating">
+                                    &nbsp;&nbsp;&nbsp;
+                                    <label class="fas fa-church fa-2x">
+                                        <input type="radio" value="1" name="rating">
+                                    </label>
                                     &nbsp;
-                                    <input type="radio" value="2" name="rating">
+                                    <label class="fas fa-hanukiah fa-2x">
+                                        <input type="radio" value="2" name="rating">
+                                    </label>
                                     &nbsp;
+                                    <label class="fas fa-pencil-alt fa-2x"></label>
                                     <input type="radio" value="3" name="rating">
                                     &nbsp;
-                                    <input type="radio" value="4" name="rating">
-                                    &nbsp;
-                                    <input type="radio" value="5" name="rating" checked>
-                                    &nbsp;Good
                                 </div>
                             </div>
                             <div class="buttons">
@@ -93,7 +100,10 @@
                     </div>
                     <div class="tab-pane fade" id="tab_four">
                         <div class="d-flex flex-wrap">
-                            gallery
+                            {{-- {{ dd($data->memorialImages) }} --}}
+                            @foreach ($data->memorialImages as $photos)
+                                <img src="{{ url('storage/images/' . $photos->title) }}" alt="">
+                            @endforeach
                         </div>
                     </div>
                 </div>

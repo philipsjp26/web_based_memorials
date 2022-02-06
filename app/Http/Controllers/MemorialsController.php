@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Memorials;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
+use Image;
 
 class MemorialsController extends Controller
 {
@@ -20,7 +20,9 @@ class MemorialsController extends Controller
             'gender' => 'required',
             'relationship' => 'required',
             'memorial_category' => 'required',
-            'image' => 'required|image|mimes:jpeg,jpg,png,|max:2048'
+            'image' => 'required|image|mimes:jpeg,jpg,png,|max:2048',
+            'date_of_birth' => 'date_format:Y-m-d',
+            'date_of_death' => 'date_format:Y-m-d'
         ]);
         if ($credentials->fails()) {
             Alert::error('Error', $credentials->errors()->first());
@@ -41,6 +43,8 @@ class MemorialsController extends Controller
                 $data->gender = $data->getGenderAttribute($request->gender);
                 $data->relationship_id = $request->relationship;
                 $data->category_id = $request->memorial_category;
+                $data->date_of_birth = $request->date_of_birth;
+                $data->date_of_death = $request->date_of_death;
                 $imageName = time() . '.' . $request->image->extension();
                 $path = $request->image->storeAs('public/images', $imageName);
                 $data->save();
@@ -63,8 +67,13 @@ class MemorialsController extends Controller
 
         for ($i = 0; $i < count($request->file('image')); $i++) {
             $filename = str_replace(' ', '', $request->file('image')[$i]->getClientOriginalName());
-            $path = $request->file('image')[$i]->storeAs('public/images', $filename);
-            insertIntoMemorialImages($data, $filename, $path);
+            $image = $request->file('image')[$i];
+            $img = Image::make($image->path());
+            $destination = public_path('/storage/images/');
+            $img->resize(300, 300, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destination . $filename, 80);
+            insertIntoMemorialImages($data, $filename, $destination.$filename);
         }
         Alert::success('Success', "Images has bean added");
         return back();
