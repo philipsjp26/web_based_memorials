@@ -160,7 +160,10 @@
                                         <!-- Single Tab Content Start -->
                                         <div class="tab-pane fade" id="account-info" role="tabpanel">
                                             <div class="myaccount-content">
-                                                <h3>Account Details</h3>
+                                                <div class="d-flex justify-content-between">
+                                                    <h3>Account Details</h3>
+                                                    <button class="btn btn__primary px-4 py-2 rounded">Freemium</button>
+                                                </div>
                                                 <div class="account-details-form">
                                                     <form action="#">
                                                         <div class="row">
@@ -174,6 +177,14 @@
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="single-input-item">
+                                                                    <label for="first-name" class="required">Middle
+                                                                        Name</label>
+                                                                    <input type="text" id="first-name"
+                                                                        placeholder="First Name" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-12">
+                                                                <div class="single-input-item">
                                                                     <label for="last-name" class="required">Last
                                                                         Name</label>
                                                                     <input type="text" id="last-name"
@@ -182,13 +193,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="single-input-item">
-                                                            <label for="display-name" class="required">Display
-                                                                Name</label>
-                                                            <input type="text" id="display-name"
-                                                                placeholder="Display Name" />
-                                                        </div>
-                                                        <div class="single-input-item">
-                                                            <label for="email" class="required">Email Addres</label>
+                                                            <label for="email" class="required">Email Address</label>
                                                             <input type="email" id="email" placeholder="Email Address" />
                                                         </div>
                                                         <fieldset>

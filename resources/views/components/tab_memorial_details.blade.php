@@ -99,10 +99,9 @@
                         </form> <!-- end of review-form -->
                     </div>
                     <div class="tab-pane fade" id="tab_four">
-                        <div class="d-flex flex-wrap">
-                            {{-- {{ dd($data->memorialImages) }} --}}
+                        <div class="d-flex flex-wrap">                            
                             @foreach ($data->memorialImages as $photos)
-                                <img src="{{ url('storage/images/' . $photos->title) }}" alt="">
+                                <img style="margin-right: 25px; margin-top: 5px" src="{{ url('storage/images/' . $photos->title) }}" alt="">
                             @endforeach
                         </div>
                     </div>

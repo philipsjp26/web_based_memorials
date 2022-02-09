@@ -12,7 +12,8 @@
                             the
                             card's
                             content.</p>
-                        <a href="/feature/freemium" style="border-radius: 0.25rem; margin-top: 10%" class="btn btn__primary">Details</a>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#freemiumModal"
+                            style="border-radius: 0.25rem; margin-top: 10%" class="btn btn__primary">Details</a>
                     </div>
                 </div>
             </div>
@@ -25,8 +26,49 @@
                             the
                             card's
                             content.</p>
-                        <a href="#" class="btn btn__primary" style="border-radius: 0.25rem; margin-top: 10%;">Go
-                            somewhere</a>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#premiumModal"
+                            style="border-radius: 0.25rem; margin-top: 10%" class="btn btn__primary">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="freemiumModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="max-width: 500px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel" style="margin-bottom: 0; line-height: 1.5">
+                            Freemium Details</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>- Max Gallery Photo 5 pcs</p>
+                        <p>- Max Gallery Video 5 pcs</p>
+                        <p>- Default url inks page</p>
+                        <p>- One admin</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="premiumModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="max-width: 500px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel" style="margin-bottom: 0; line-height: 1.5">
+                            Premium Details</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>- Max Gallery Photo Unlimited</p>
+                        <p>- Max Gallery Video 5 pcs</p>
+                        <p>- Default url links page</p>
+                        <p>- More Than One Admin</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success rounded">Request Upgrade</button>
                     </div>
                 </div>
             </div>
