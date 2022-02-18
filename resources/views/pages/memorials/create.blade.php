@@ -100,6 +100,12 @@
                                     <input type="file" name="image" class="form-control" required multiple>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <div class="col">
+                                    <label class="col-form-label"><span class="text-danger">*</span>Address</label>
+                                    <textarea name="alamat"cols="73" rows="10"></textarea>
+                                </div>
+                            </div>
                             <div class="buttons">
                                 <button class="sqr-btn btn-hero" type="submit">Submit</button>
                             </div>

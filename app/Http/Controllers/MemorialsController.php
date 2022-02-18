@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MemorialImages;
 use Illuminate\Http\Request;
 use App\Models\Memorials;
 use Illuminate\Support\Facades\Validator;
@@ -15,12 +16,12 @@ class MemorialsController extends Controller
         // dd('Chek'.$request->get('account_id'));
         $credentials = Validator::make($request->all(), [
             'first_name' => 'required|max:255',
-            'middle_name' => 'required',
             'nik' => 'required',
             'gender' => 'required',
             'relationship' => 'required',
             'memorial_category' => 'required',
             'image' => 'required|image|mimes:jpeg,jpg,png,|max:2048',
+            'alamat' => 'required|max:255',
             'date_of_birth' => 'date_format:Y-m-d',
             'date_of_death' => 'date_format:Y-m-d'
         ]);
@@ -37,7 +38,7 @@ class MemorialsController extends Controller
                 Alert::error('Error', $result['message']);
             } else {
                 $data->first_name = $request->first_name;
-                $data->middle_name = $request->middle_name;
+                $data->middle_name = $request->middle_name ? $request->middle_name : '';
                 $data->last_name = $request->last_name;
                 $data->nik = $request->nik;
                 $data->gender = $data->getGenderAttribute($request->gender);
@@ -45,6 +46,7 @@ class MemorialsController extends Controller
                 $data->category_id = $request->memorial_category;
                 $data->date_of_birth = $request->date_of_birth;
                 $data->date_of_death = $request->date_of_death;
+                $data->alamat = $request->alamat;
                 $imageName = time() . '.' . $request->image->extension();
                 $path = $request->image->storeAs('public/images', $imageName);
                 $data->save();
@@ -65,18 +67,25 @@ class MemorialsController extends Controller
     {
         $data = Memorials::find($id);
 
-        for ($i = 0; $i < count($request->file('image')); $i++) {
-            $filename = str_replace(' ', '', $request->file('image')[$i]->getClientOriginalName());
-            $image = $request->file('image')[$i];
-            $img = Image::make($image->path());
-            $destination = public_path('/storage/images/');
-            $img->resize(300, 300, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save($destination . $filename, 80);
-            insertIntoMemorialImages($data, $filename, $destination.$filename);
+        $memorial_image = new MemorialImages();
+        $validate = $memorial_image->validate_total_image($id);        
+        if ($validate['status'] == true) {
+            Alert::error('Validate', $validate['message']);
+            return back();
+        } else {
+            for ($i = 0; $i < count($request->file('image')); $i++) {
+                $filename = str_replace(' ', '', $request->file('image')[$i]->getClientOriginalName());
+                $image = $request->file('image')[$i];
+                $img = Image::make($image->path());
+                $destination = public_path('/storage/images/');
+                $img->resize(300, 300, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($destination . $filename, 80);
+                insertIntoMemorialImages($data, $filename, $destination . $filename);
+            }
+            Alert::success('Success', "Images has bean added");
+            return back();
         }
-        Alert::success('Success', "Images has bean added");
-        return back();
     }
     public function update(Request $request, $id)
     {

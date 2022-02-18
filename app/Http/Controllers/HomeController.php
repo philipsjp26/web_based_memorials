@@ -23,8 +23,10 @@ class HomeController extends Controller
     public function searching(Request $request)
     {
         $data = new Memorials;
-        $data = $data->search($request->q)->paginate();
-        return view('components.slider', compact('data'));
+        $totalMemorials = Memorials::count();
+        $totalAccounts = Account::count();    
+        $data = $data->search($request->q)->paginate(8);
+        return view('components.slider', compact('data', 'totalMemorials', 'totalAccounts'));
     }
 
     public function pageList()

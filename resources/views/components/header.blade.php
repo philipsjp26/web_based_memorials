@@ -26,9 +26,8 @@
                                         <ul>
                                             <li class="active"><a href="/">Home </a>
                                             </li>
-                                            <li><a href="/home/list">Pages<i class="fa fa-angle-down"></i></a>
-                                                <ul class="dropdown">
-                                                    <li><a href="/home/list">List Of Memorials</a></li>
+                                            <li><a href="#">Pages<i class="fa fa-angle-down"></i></a>
+                                                <ul class="dropdown">                                                    
                                                     <li><a href="/home/create">Create Memorials</a></li>
                                                 </ul>
                                             </li>

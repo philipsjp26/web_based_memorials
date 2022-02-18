@@ -13,8 +13,7 @@ class CreateCustomerTransactionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer_transactions', function (Blueprint $table) {
-            $table->id();
+        Schema::create('customer_transactions', function (Blueprint $table) {            
             $table->string('public_uid', 32)->primary()->unique();
             $table->string('status');
             $table->foreignId('account_id')->constrained('accounts', 'id');

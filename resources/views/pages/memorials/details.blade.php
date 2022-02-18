@@ -20,14 +20,14 @@
                                             alt="product-details" />
                                     </div>
                                 </div>
-                                <div class="pro-nav slick-row-10 slick-arrow-style">
+                                {{-- <div class="pro-nav slick-row-10 slick-arrow-style">
                                     @foreach ($data->memorialImages as $item)
                                         <div class="pro-nav-thumb">
                                             <img src="{{ url('storage/images/' . $item->title) }}"
                                                 alt="product-details" />
                                         </div>
                                     @endforeach
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="col-lg-7">
                                 <div class="product-details-des">
@@ -51,6 +51,8 @@
                                             </button>
                                         @endif
                                     @endauth
+                                    <button data-bs-toggle="modal" data-bs-target="#modalApproved"
+                                        class="btn btn-success">Claim Family</button>
                                 </div>
                             </div>
 
@@ -110,16 +112,16 @@
                                                 <label for="exampleFormControlTextarea1">About</label>
                                                 <textarea name="description" class="form-control"
                                                     id="exampleFormControlTextarea1" cols="30" rows="10">
-                                                            @if ($data->memorialDescription)
-                                                                {{ $data->memorialDescription->description }}
-                                                            @endif
-                                                            </textarea>
+                                                                        @if ($data->memorialDescription)
+    {{ $data->memorialDescription->description }}
+    @endif
+                                                                        </textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea2">Life</label>
                                                 <textarea name="life" class="form-control" id="" cols="30" rows="10">
-                                                    {{ $data->memorialDescription ? $data->memorialDescription->life : ""}}
-                                                </textarea>
+                                                                {{ $data->memorialDescription ? $data->memorialDescription->life : '' }}
+                                                            </textarea>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -134,6 +136,7 @@
                     </div>
                     <!-- Quick view modal end -->
                     @include('components.modal', $data)
+                    @include('components.modal_approved')
                     @include('components.tab_memorial_details', $data)
                 </div>
                 <!-- product details wrapper end -->
