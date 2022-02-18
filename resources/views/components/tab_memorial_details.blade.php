@@ -31,7 +31,6 @@
                     <div class="tab-pane fade" id="tab_three">
                         <div class="review-form">
                             @foreach ($data->reviews as $review)
-
                                 <h5>review from <span>{{ $review->username }}</span></h5>
                                 <div class="total-reviews">
                                     <div class="review-box">
@@ -79,7 +78,7 @@
                                     <label class="col-form-label"><span class="text-danger">*</span>
                                         Rating</label>
                                     &nbsp;&nbsp;&nbsp;
-                                    <label class="fas fa-church fa-2x">
+                                    <label class="material-icons-outlined">
                                         <input type="radio" value="1" name="rating">
                                     </label>
                                     &nbsp;
@@ -99,9 +98,10 @@
                         </form> <!-- end of review-form -->
                     </div>
                     <div class="tab-pane fade" id="tab_four">
-                        <div class="d-flex flex-wrap">                            
+                        <div class="d-flex flex-wrap">
                             @foreach ($data->memorialImages as $photos)
-                                <img style="margin-right: 25px; margin-top: 5px" src="{{ url('storage/images/' . $photos->title) }}" alt="">
+                                <img style="margin-right: 25px; margin-top: 5px"
+                                    src="{{ url('storage/images/' . $photos->title) }}" alt="">
                             @endforeach
                         </div>
                     </div>

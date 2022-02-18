@@ -5,12 +5,14 @@
                     <div class="col-12">
                         <div class="section-title text-center">
                             <h2>Memorials</h2>
-                            <p>Accumsan vitae pede lacus ut ullamcorper sollicitudin quisque libero</p>
+                            <div class="class">
+                                <p>Total Memorials : {{ $totalMemorials }} </p>
+                                <p>Total Accounts : {{ $totalAccounts }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div id="dataList" class="row">
-                    <!-- product single item start -->
                     @foreach ($data as $memorial)
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product-item">

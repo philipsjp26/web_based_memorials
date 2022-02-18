@@ -20,13 +20,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 
+//  == Route Dashboard ==
+
+Route::get('/admin/dashboard', function() {
+    return view('dashboard.index');
+});
+// == End of line Route Dashboard
+
 Route::group(['prefix' => 'memorial', 'middleware' => 'isLogin'], function () {
     Route::post('/create', [MemorialsController::class, 'create']);
     Route::post('/add/images/{id}', [MemorialsController::class, 'addMoreImages']);
     Route::put('/update/{id}', [MemorialsController::class, 'update']);
 });
 
-Route::group(['prefix' => 'feature'], function () {
+Route::group(['prefix' => 'feature', 'middleware' => 'isLogin'], function () {
     Route::get('/freemium', [HomeController::class, 'pageFreemium']);
 });
 

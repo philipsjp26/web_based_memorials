@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Memorials;
 use App\Models\Relationship;
+use App\Models\Account;
 
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -15,7 +15,9 @@ class HomeController extends Controller
     public function index()
     {
         $data = Memorials::with('memorialImages')->paginate();
-        return view('components.slider', compact('data'));
+        $totalMemorials = Memorials::count();
+        $totalAccounts = Account::count();        
+        return view('components.slider', compact('data', 'totalMemorials', 'totalAccounts'));
     }
 
     public function searching(Request $request)
