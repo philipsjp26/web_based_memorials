@@ -26,26 +26,32 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-2 py-1">
-                                            <div>
-                                                <img src="{{ asset('dashboard/assets/img/team-2.jpg') }}"
-                                                    class="avatar avatar-sm me-3" alt="user1">
+                                @foreach ($data as $item)
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div>
+                                                    <img src="{{ asset('dashboard/assets/img/team-2.jpg') }}"
+                                                        class="avatar avatar-sm me-3" alt="user1">
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">{{ $item->username}}</h6>
+                                                    <p class="text-xs text-secondary mb-0">{{ $item->email}}</p>
+                                                </div>
                                             </div>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">John Michael</h6>
-                                                <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-sm bg-gradient-success">Premium</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <span class="text-secondary text-sm font-weight-bold">2022-02-22</span>
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-sm bg-gradient-success">Premium</span>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <span class="text-secondary text-sm font-weight-bold">{{ $item->created_at}}</span>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <a class="btn btn-warning" href="#">Edit</a>
+                                            <a class="btn btn-danger" href="#">Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

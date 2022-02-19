@@ -33,8 +33,6 @@
         @yield('content')
     </main>
 
-
-
     <script src="{{ asset('dashboard/assets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('dashboard/assets/js/core/bootstrap.min.js') }}"></script>
     <script src="{{ asset('dashboard/assets/js/plugins/perfect-scrollbar.min.js') }}"></script>

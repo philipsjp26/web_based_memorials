@@ -8,7 +8,7 @@
             <img src="{{ asset('dashboard/assets/img/logo-ct-dark.png') }}" class="navbar-brand-img h-100"
                 alt="main_logo" />
 
-            <span class="ms-1 font-weight-bold">Argon Dashboard 2</span>
+            <span class="ms-1 font-weight-bold">Argon Dashboard </span>
         </a>
     </div>
     <hr class="horizontal dark mt-0" />

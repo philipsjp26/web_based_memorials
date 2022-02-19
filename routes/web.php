@@ -30,6 +30,7 @@ Route::get('/', [HomeController::class, 'index']);
 // });
 
 Route::group(['prefix' => 'admin'], function(){
+    Route::get('/dashboard/login', [DashboardController::class, 'login']);
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/dashboard/transactions', [DashboardController::class, 'transactions']);
 

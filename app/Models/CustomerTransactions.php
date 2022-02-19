@@ -18,7 +18,7 @@ class CustomerTransactions extends Model
         'updated_at' => 'datetime:Y-m-d H:m:s'
     ];
     protected $fillable = [
-        'public_uid', 'status', 'account_id'
+        'public_uid', 'status', 'account_id', 'created_at'
     ];
     
     public function account(){
