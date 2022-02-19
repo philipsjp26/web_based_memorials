@@ -30,6 +30,7 @@
     @include('dashboard.components.sidebar')
     <main class="main-content border-radius-lg">
         @include('dashboard.components.navbar')
+        @yield('content')
     </main>
 
 

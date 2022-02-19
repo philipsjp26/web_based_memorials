@@ -11,12 +11,11 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-
     public function index()
     {
         $data = Memorials::with('memorialImages')->paginate();
         $totalMemorials = Memorials::count();
-        $totalAccounts = Account::count();        
+        $totalAccounts = Account::count();
         return view('components.slider', compact('data', 'totalMemorials', 'totalAccounts'));
     }
 
@@ -24,7 +23,7 @@ class HomeController extends Controller
     {
         $data = new Memorials;
         $totalMemorials = Memorials::count();
-        $totalAccounts = Account::count();    
+        $totalAccounts = Account::count();
         $data = $data->search($request->q)->paginate(8);
         return view('components.slider', compact('data', 'totalMemorials', 'totalAccounts'));
     }
@@ -49,9 +48,14 @@ class HomeController extends Controller
         }
         return view('pages.memorials.details', compact('data', 'account_id'));
     }
-    public function pagePlanAndFeatures()
+    public function pagePlanAndFeatures(Request $request)
     {
-        return view('pages.PlanAndFeature');
+        $account_id = $request->get('accounts_id');
+
+        $data = Account::with(['customer_transactions' => function ($q) use ($account_id) {
+            $q->where('account_id', '=', $account_id);
+        }])->get();
+        return view('pages.PlanAndFeature', compact('data'));
     }
     public function pageFreemium()
     {

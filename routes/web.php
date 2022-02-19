@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CustomerTransactionsController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemorialsController;
 use App\Http\Controllers\ReviewsController;
+use App\Models\CustomerTransactions;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,10 +25,21 @@ Route::get('/', [HomeController::class, 'index']);
 
 //  == Route Dashboard ==
 
-Route::get('/admin/dashboard', function() {
-    return view('dashboard.index');
+// Route::get('/admin/dashboard', function() {
+//     return view('dashboard.index');
+// });
+
+Route::group(['prefix' => 'admin'], function(){
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/dashboard/transactions', [DashboardController::class, 'transactions']);
+
 });
 // == End of line Route Dashboard
+
+Route::group(['prefix' => 'transaction', 'middleware' => 'isLogin'], function() {
+    Route::post('/create', [CustomerTransactionsController::class, 'create']);
+});
+
 
 Route::group(['prefix' => 'memorial', 'middleware' => 'isLogin'], function () {
     Route::post('/create', [MemorialsController::class, 'create']);
@@ -45,7 +59,7 @@ Route::group(['prefix' => 'reviews'], function () {
 Route::prefix('/home')->group(function () {
     Route::get('/list', [HomeController::class, 'pageList']);
     Route::get('/search', [HomeController::class, 'searching'])->name('search');
-    Route::get('/features', [HomeController::class, 'pagePlanAndFeatures']);
+    Route::get('/features', [HomeController::class, 'pagePlanAndFeatures'])->middleware("isLogin");
     Route::get('/create', [HomeController::class, 'pageCreate'])->middleware('isLogin');
     Route::get('/detail/{id}', [HomeController::class, 'pageDetail']);
     Route::get('/myaccount', [HomeController::class, 'pageMyAccount'])->middleware('isLogin');

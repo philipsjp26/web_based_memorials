@@ -25,4 +25,8 @@ class Account extends AuthAccount
     {
         return $this->belongsToMany(Memorials::class, 'memorials_accounts');
     }
+    public function customer_transactions()
+    {
+        return $this->hasMany(CustomerTransactions::class, 'account_id');
+    }
 }
