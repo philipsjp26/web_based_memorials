@@ -34,6 +34,7 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/dashboard/transactions', [DashboardController::class, 'transactions']);
     Route::get('/dashboard/memorials', [DashboardController::class, 'memorials']);
+    Route::get('/profile', [DashboardController::class, 'profile_detail']);
 
 });
 // == End of line Route Dashboard

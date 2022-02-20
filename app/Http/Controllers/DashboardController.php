@@ -19,7 +19,8 @@ class DashboardController extends Controller
         $page_login = true;
         return view('dashboard.pages.login', compact('page_login'));
     }
-    public function memorials(){
+    public function memorials()
+    {
         $data = Memorials::paginate(15);
         return view('dashboard.pages.memorials', compact('data'));
     }
@@ -27,5 +28,9 @@ class DashboardController extends Controller
     {
         $data = CustomerTransactions::paginate(15);
         return view('dashboard.pages.transactions', compact('data'));
-    }    
+    }
+    public function profile_detail()
+    {
+        return view("dashboard.pages.profile");
+    }
 }

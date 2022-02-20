@@ -52,7 +52,7 @@
                                                 class="text-secondary text-sm font-weight-bold">{{ $item->created_at }}</span>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <a class="btn btn-warning" href="#">Edit</a>
+                                            <a class="btn btn-warning" href="/admin/profile">Edit</a>
                                             <a class="btn btn-danger" href="#">Delete</a>
                                         </td>
                                     </tr>
