@@ -10,7 +10,7 @@
                     <div class="col-lg-5 col-md-6 col-sm-8">
                         <div class="footer-widget-item mb-30">
                             <div class="footer-widget-title">
-                                <h5>My account</h5>
+                                <h5>Address</h5>
                             </div>
                             <ul class="footer-widget-body accout-widget">
                                 <li class="address">
@@ -26,9 +26,6 @@
                                     <a href="tel:(012)800456789-987">(012) 800 456 789-987</a>
                                 </li>
                             </ul>
-                            <div class="payment-method">
-                                <img src={{ asset('img/payment-pic.png') }} alt="payment method">
-                            </div>
                         </div>
                     </div>
                     <!-- footer widget item end -->
@@ -40,9 +37,9 @@
                                 <h5>categories</h5>
                             </div>
                             <ul class="footer-widget-body">
-                                <li><a href="#">Covid 19</a></li>
-                                <li><a href="#">Cancer</a></li>
-                                <li><a href="#">Virus</a></li>
+                                <li><span>Covid 19</span></li>
+                                <li><span>Cancer</span></li>
+                                <li><span>Virus</span></li>
                             </ul>
                         </div>
                     </div>
@@ -55,9 +52,8 @@
                                 <h5>information</h5>
                             </div>
                             <ul class="footer-widget-body">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Contact Us</a></li>
+                                <li><span>Home</span></li>
+                                <li><span>Contact Us</span></li>
                             </ul>
                         </div>
                     </div>
@@ -70,8 +66,8 @@
                                 <h5>Quick Links</h5>
                             </div>
                             <ul class="footer-widget-body">
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="#">Contact Us</a></li>
+                                <li><span>My Account</span></li>
+                                <li><span>Contact Us</span></li>
                             </ul>
                         </div>
                     </div>
@@ -88,14 +84,10 @@
             <div class="row align-items-center">
                 <div class="col-md-6 order-2 order-md-1">
                     <div class="copyright-text">
-                        <p>&copy; 2021 <b>Floda</b></p>
+                        <p>&copy; 2021 <b>Dooka</b></p>
                     </div>
                 </div>
-                <div class="col-md-6 order-1 order-md-2">
-                    <div class="footer-social-link">
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                    </div>
-                </div>
+      
             </div>
         </div>
     </div>

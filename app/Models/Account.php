@@ -11,7 +11,7 @@ class Account extends AuthAccount
     use HasFactory;
 
     protected $table = 'accounts';
-    protected $fillable = ['email', 'username', 'password', 'created_at'];
+    protected $fillable = ['email', 'username', 'role', 'type', 'password', 'created_at'];
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:m:s',
         'updated_at' => 'datetime:Y-m-d H:m:s'

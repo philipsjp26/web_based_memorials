@@ -13,12 +13,21 @@
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Account username</th>
+                                        Memorial name</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Status</th>
+                                        NIK</th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Created At</th>
+                                        Relationship</th>
+                                    <th
+                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Gender</th>
+                                    <th
+                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Date of Birth</th>
+                                    <th
+                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Date of Death</th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Action</th>
@@ -26,6 +35,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+
                                 @foreach ($data as $item)
                                     <tr>
                                         <td>
@@ -35,21 +45,27 @@
                                                         class="avatar avatar-sm me-3" alt="user1">
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm">{{ $item->username }}</h6>
-                                                    <p class="text-xs text-secondary mb-0">{{ $item->email }}</p>
+                                                    <h6 class="mb-0 text-sm">{{ $item->first_name }}</h6>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            @if ($item->type == 'premium')
-                                                <span class="badge badge-sm bg-gradient-success">Premium</span>
-                                            @else
-                                                <span class="badge badge-sm bg-gradient-secondary">Freemium</span>
-                                            @endif
+                                            <h6 class="mb-0 text-sm">{{ $item->nik }}</h6>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <h6 class="mb-0 text-sm">{{ $item->relationship->name }}</h6>
+                                            {{-- <span class="text-secondary text-sm font-weight-bold">2020-01-01</span> --}}
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <h6 class="mb-0 text-sm">{{ $item->gender }}</h6>
                                         </td>
                                         <td class="align-middle text-center">
                                             <span
-                                                class="text-secondary text-sm font-weight-bold">{{ $item->created_at }}</span>
+                                                class="text-secondary text-sm font-weight-bold">{{ $item->date_of_birth }}</span>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <span
+                                                class="text-secondary text-sm font-weight-bold">{{ $item->date_of_death }}</span>
                                         </td>
                                         <td class="align-middle text-center">
                                             <a class="btn btn-warning" href="#">Edit</a>
@@ -58,7 +74,7 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-                        </table>
+                        </table>                        
                     </div>
                 </div>
             </div>

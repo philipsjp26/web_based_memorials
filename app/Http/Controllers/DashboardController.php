@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Account;
 use App\Models\CustomerTransactions;
+use App\Models\Memorials;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -17,6 +18,10 @@ class DashboardController extends Controller
     {
         $page_login = true;
         return view('dashboard.pages.login', compact('page_login'));
+    }
+    public function memorials(){
+        $data = Memorials::paginate(15);
+        return view('dashboard.pages.memorials', compact('data'));
     }
     public function transactions()
     {
