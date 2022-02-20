@@ -8,6 +8,7 @@ use App\Http\Controllers\MemorialsController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\TransactionImagesController;
 use App\Models\CustomerTransactions;
+use App\Models\TransactionImages;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -74,4 +75,5 @@ Route::prefix('auth')->group(function () {
 
 Route::group(['prefix' => 'upload', 'middleware' => 'isLogin'], function () {
     Route::post('/{transaction_id}', [TransactionImagesController::class, 'upload']);
+    Route::post('/download/{transaction_id}', [TransactionImagesController::class, 'download']);
 });
