@@ -7,17 +7,22 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/upload/" method="post">
+
+                <form action="/upload/{{ $transaction_id }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
-                    <div class="mb-3">
-                        <input class="form-control" name="image" type="file" id="formFile">
+                    <div class="form-group">
+                        <div class="col" id="dynamicField">
+                            <label class="col-form-label"><span class="text-danger"></span>
+                            </label>
+                            <input type="file" name="image" class="form-control">
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success" style="border-radius: 10%">Upload</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success" style="border-radius: 10%">Upload</button>
+            </div>
             </form>
         </div>
     </div>

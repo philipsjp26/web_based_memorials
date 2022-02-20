@@ -167,12 +167,18 @@
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
+                                                        @php
+                                                            $transaction_id = null;
+                                                        @endphp
                                                         <tbody>
                                                             @foreach ($transaction as $trx)
+                                                                @php
+                                                                    $transaction_id = $trx->id;
+                                                                @endphp
                                                                 <tr>
                                                                     <td>{{ $trx->public_uid }}</td>
-                                                                    <td>{{ $trx->status}}</td>
-                                                                    <td>{{ $trx->created_at}}</td>
+                                                                    <td>{{ $trx->status }}</td>
+                                                                    <td>{{ $trx->created_at }}</td>
                                                                     <td class="d-flex justify-content-evenly">
                                                                         <button type="button" data-bs-toggle="modal"
                                                                             data-bs-target="#modalUploadFile"
@@ -184,7 +190,7 @@
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
-                                                            @include('components.modal_upload')
+                                                            @include('components.modal_upload', ['transaction_id' => $transaction_id])
                                                         </tbody>
                                                     </table>
                                                 </div>
