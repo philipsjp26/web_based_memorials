@@ -1,7 +1,6 @@
 @extends('layouts.home')
 
 @section('content')
-
     @include('components.breadcrumb')
     <!-- my account wrapper start -->
     <div class="my-account-wrapper section-space pb-0">
@@ -18,15 +17,8 @@
                                         <a href="#dashboard" class="active" data-bs-toggle="tab"><i
                                                 class="fa fa-dashboard"></i>
                                             Dashboard</a>
-                                        {{-- <a href="#orders" data-bs-toggle="tab"><i class="fa fa-cart-arrow-down"></i>
-                                            Orders</a> --}}
-                                        {{-- <a href="#download" data-bs-toggle="tab"><i class="fa fa-cloud-download"></i>
-                                            Download</a> --}}
-                                        {{-- <a href="#payment-method" data-bs-toggle="tab"><i class="fa fa-credit-card"></i>
-                                            Payment
-                                            Method</a> --}}
-                                        {{-- <a href="#address-edit" data-bs-toggle="tab"><i class="fa fa-map-marker"></i>
-                                            address</a> --}}
+                                        <a href="#transaction" data-bs-toggle="tab"><i class="fa fa-cart-arrow-down"></i>
+                                            Transaction</a>
                                         <a href="#account-info" data-bs-toggle="tab"><i class="fa fa-user"></i> Account
                                             Details</a>
                                         <form id="form1" action="/auth/logout" method="post">
@@ -83,78 +75,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Single Tab Content End -->
-
-                                        <!-- Single Tab Content Start -->
-                                        <div class="tab-pane fade" id="orders" role="tabpanel">
-                                            <div class="myaccount-content">
-                                                <h3>Orders</h3>
-                                                <div class="myaccount-table table-responsive text-center">
-                                                    <table class="table table-bordered">
-                                                        <thead class="thead-light">
-                                                            <tr>
-                                                                <th>Order</th>
-                                                                <th>Date</th>
-                                                                <th>Status</th>
-                                                                <th>Total</th>
-                                                                <th>Action</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>Aug 22, 2019</td>
-                                                                <td>Pending</td>
-                                                                <td>$3000</td>
-                                                                <td><a href="cart.html" class="btn btn__bg">View</a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>2</td>
-                                                                <td>July 22, 2019</td>
-                                                                <td>Approved</td>
-                                                                <td>$200</td>
-                                                                <td><a href="cart.html" class="btn btn__bg">View</a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>3</td>
-                                                                <td>June 12, 2019</td>
-                                                                <td>On Hold</td>
-                                                                <td>$990</td>
-                                                                <td><a href="cart.html" class="btn btn__bg">View</a>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Tab Content End -->
-
-                                        <!-- Single Tab Content Start -->
-                                        {{-- <div class="tab-pane fade" id="payment-method" role="tabpanel">
-                                            <div class="myaccount-content">
-                                                <h3>Payment Method</h3>
-                                                <p class="saved-message">You Can't Saved Your Payment Method yet.</p>
-                                            </div>
-                                        </div> --}}
-                                        <!-- Single Tab Content End -->
-
-                                        <!-- Single Tab Content Start -->
-                                        {{-- <div class="tab-pane fade" id="address-edit" role="tabpanel">
-                                            <div class="myaccount-content">
-                                                <h3>Billing Address</h3>
-                                                <address>
-                                                    <p><strong>Erik Jhonson</strong></p>
-                                                    <p>1355 Market St, Suite 900 <br>
-                                                        San Francisco, CA 94103</p>
-                                                    <p>Mobile: (123) 456-7890</p>
-                                                </address>
-                                                <a href="#" class="btn btn__bg"><i class="fa fa-edit"></i>
-                                                    Edit Address</a>
-                                            </div>
-                                        </div> --}}
                                         <!-- Single Tab Content End -->
 
                                         <!-- Single Tab Content Start -->
@@ -230,7 +150,47 @@
                                                     </form>
                                                 </div>
                                             </div>
-                                        </div> <!-- Single Tab Content End -->
+                                        </div>
+                                        <!-- Single Tab Content End -->
+
+                                        <!-- Single Tab Content Start -->
+                                        <div class="tab-pane fade" id="transaction" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Dashboard</h3>
+                                                <div class="myaccount-table table-responsive text-center">
+                                                    <table class="table table-bordered">
+                                                        <thead class="thead-light">
+                                                            <tr>
+                                                                <th>No Transaction</th>
+                                                                <th>Status</th>
+                                                                <th>Created At</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($transaction as $trx)
+                                                                <tr>
+                                                                    <td>{{ $trx->public_uid }}</td>
+                                                                    <td>{{ $trx->status}}</td>
+                                                                    <td>{{ $trx->created_at}}</td>
+                                                                    <td class="d-flex justify-content-evenly">
+                                                                        <button type="button" data-bs-toggle="modal"
+                                                                            data-bs-target="#modalUploadFile"
+                                                                            class="btn btn__warning"
+                                                                            style="border-radius: 10%">
+                                                                            Upload</button>
+                                                                        <a href="#" class="btn btn__primary"
+                                                                            style="border-radius: 10%">Details</a>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                            @include('components.modal_upload')
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Single Tab Content End -->
                                     </div>
                                 </div> <!-- My Account Tab Content End -->
                             </div>
@@ -241,5 +201,4 @@
         </div>
     </div>
     <!-- my account wrapper end -->
-
 @endsection

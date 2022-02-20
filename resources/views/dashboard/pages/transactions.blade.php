@@ -47,7 +47,8 @@
                                                 class="text-secondary text-sm font-weight-bold">{{ $item->created_at }}</span>
                                         </td>
                                         <td class="align-center text-center">
-                                            <a class="btn btn-warning" href="#">Edit</a>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#transactionModal">Update</button>
                                             <a class="btn btn-danger" href="#">Delete</a>
                                         </td>
                                     </tr>
@@ -55,6 +56,41 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">No : 0219202213CUST00035</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Status</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option value="complete">Complete</option>
+                                <option value="reject">Reject</option>
+                            </select>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-8">
+                            <input type="text" class="form-control form-control-muted" placeholder="Filename.png" disabled>
+                        </div>
+                        <div class="col">
+                            <a class="btn btn-secondary" href="#">Download</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>

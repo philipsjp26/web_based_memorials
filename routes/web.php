@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemorialsController;
 use App\Http\Controllers\ReviewsController;
+use App\Http\Controllers\TransactionImagesController;
 use App\Models\CustomerTransactions;
 use Illuminate\Support\Facades\Route;
 
@@ -24,22 +25,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 
 //  == Route Dashboard ==
-
-// Route::get('/admin/dashboard', function() {
-//     return view('dashboard.index');
-// });
-
-Route::group(['prefix' => 'admin'], function(){
+Route::group(['prefix' => 'admin'], function () {
     Route::get('/dashboard/login', [DashboardController::class, 'login']);
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/dashboard/transactions', [DashboardController::class, 'transactions']);
     Route::get('/dashboard/memorials', [DashboardController::class, 'memorials']);
     Route::get('/profile', [DashboardController::class, 'profile_detail']);
-
 });
 // == End of line Route Dashboard
 
-Route::group(['prefix' => 'transaction', 'middleware' => 'isLogin'], function() {
+Route::group(['prefix' => 'transaction', 'middleware' => 'isLogin'], function () {
     Route::post('/create', [CustomerTransactionsController::class, 'create']);
 });
 
@@ -75,4 +70,8 @@ Route::prefix('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
+});
+
+Route::group(['prefix' => 'upload', 'middleware' => 'isLogin'], function () {
+    Route::post('/{transaction_id}', [TransactionImagesController::class, 'upload']);
 });

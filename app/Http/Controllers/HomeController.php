@@ -67,7 +67,11 @@ class HomeController extends Controller
         $dashboard = Memorials::with('relationship', 'category', 'accounts')
             ->whereHas('accounts', function ($q) use ($request) {
                 $q->where("accounts_id", "=", $request->get('accounts_id'));
-            })->get();
-        return view('pages.myaccount', compact('dashboard'));
+            })->get();      
+        $transaction = Memorials::with(['accounts.customer_transactions' => function($query) use($request){
+            $query->where('account_id', '=', $request->get('accounts_id'));
+        }])->first();
+        $transaction = $transaction->accounts->first()->customer_transactions;                  
+        return view('pages.myaccount', compact('dashboard', 'transaction'));
     }
 }

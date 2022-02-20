@@ -21,6 +21,10 @@ class CustomerTransactions extends Model
         'public_uid', 'status', 'account_id', 'created_at'
     ];
     
+    public function transaction_images(){
+        return $this->hasMany(TransactionImages::class, 'transaction_id');
+    }
+
     public function account(){
         return $this->belongsTo(Account::class, 'account_id');
     }
