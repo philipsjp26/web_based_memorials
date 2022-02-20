@@ -171,7 +171,7 @@
                                                             $transaction_id = null;
                                                         @endphp
                                                         <tbody>
-                                                            @foreach ($transaction as $trx)
+                                                            @foreach ($transaction as $trx)                                                                
                                                                 @php
                                                                     $transaction_id = $trx->id;
                                                                 @endphp
@@ -185,12 +185,19 @@
                                                                             class="btn btn__warning"
                                                                             style="border-radius: 10%">
                                                                             Upload</button>
-                                                                        <a href="#" class="btn btn__primary"
-                                                                            style="border-radius: 10%">Details</a>
+
+                                                                        <button type="button" data-bs-toggle="modal"
+                                                                            data-bs-target="#modalTransactionDetail"
+                                                                            class="btn btn__primary"
+                                                                            style="border-radius: 10%">
+                                                                            Details</button>
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
-                                                            @include('components.modal_upload', ['transaction_id' => $transaction_id])
+                                                            @include('components.modal_upload', ['transaction_id' =>
+                                                            $transaction_id])
+                                                            @include('components.modal_details_transaction',
+                                                            ['transaction_id' => $transaction_id, 'image' => $image])
                                                         </tbody>
                                                     </table>
                                                 </div>

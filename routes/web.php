@@ -32,11 +32,14 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/dashboard/transactions', [DashboardController::class, 'transactions']);
     Route::get('/dashboard/memorials', [DashboardController::class, 'memorials']);
     Route::get('/profile', [DashboardController::class, 'profile_detail']);
+    Route::get('/download/{filename}', [DashboardController::class, 'download']);
 });
 // == End of line Route Dashboard
 
 Route::group(['prefix' => 'transaction', 'middleware' => 'isLogin'], function () {
     Route::post('/create', [CustomerTransactionsController::class, 'create']);
+    Route::put('/update/{id}', [CustomerTransactionsController::class, 'update']);  
+    Route::delete('/destroy/{id}', [CustomerTransactionsController::class, 'delete']);  
 });
 
 
@@ -74,6 +77,6 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::group(['prefix' => 'upload', 'middleware' => 'isLogin'], function () {
+    Route::get('/download/{transaction_id}', [TransactionImagesController::class, 'download']);
     Route::post('/{transaction_id}', [TransactionImagesController::class, 'upload']);
-    Route::post('/download/{transaction_id}', [TransactionImagesController::class, 'download']);
 });

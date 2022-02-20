@@ -6,6 +6,7 @@ use App\Models\Account;
 use App\Models\CustomerTransactions;
 use App\Models\Memorials;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
@@ -26,11 +27,15 @@ class DashboardController extends Controller
     }
     public function transactions()
     {
-        $data = CustomerTransactions::paginate(15);
+        $data = CustomerTransactions::with('transaction_images')->paginate(15);
+        
         return view('dashboard.pages.transactions', compact('data'));
     }
     public function profile_detail()
     {
         return view("dashboard.pages.profile");
+    }
+    public function download(Request $request){
+        return Storage::download("public/bukti_bayar/{$request->filename}");
     }
 }

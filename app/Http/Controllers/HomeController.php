@@ -6,7 +6,8 @@ use App\Models\Category;
 use App\Models\Memorials;
 use App\Models\Relationship;
 use App\Models\Account;
-
+use App\Models\CustomerTransactions;
+use App\Models\TransactionImages;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -67,11 +68,16 @@ class HomeController extends Controller
         $dashboard = Memorials::with('relationship', 'category', 'accounts')
             ->whereHas('accounts', function ($q) use ($request) {
                 $q->where("accounts_id", "=", $request->get('accounts_id'));
-            })->get();      
-        $transaction = Memorials::with(['accounts.customer_transactions' => function($query) use($request){
+            })->get();
+        $transaction = Memorials::with(['accounts.customer_transactions' => function ($query) use ($request) {
             $query->where('account_id', '=', $request->get('accounts_id'));
         }])->first();
-        $transaction = $transaction->accounts->first()->customer_transactions;                  
-        return view('pages.myaccount', compact('dashboard', 'transaction'));
+
+        $transaction = $transaction->accounts->first()->customer_transactions;
+        $transaction_id = $transaction->pluck('id')->first();
+
+        $image = CustomerTransactions::find($transaction_id);
+        
+        return view('pages.myaccount', compact('dashboard', 'transaction', 'image'));
     }
 }

@@ -15,7 +15,8 @@ class TransactionImages extends Model
     ];
     protected $fillable = ['filename', 'directory', 'transaction_id'];
 
-    public function customer_transaction(){
+    public function customer_transaction()
+    {
         return $this->belongsTo(CustomerTransactions::class, 'transaction_id');
     }
 }

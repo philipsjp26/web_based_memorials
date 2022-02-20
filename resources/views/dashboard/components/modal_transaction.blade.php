@@ -7,31 +7,43 @@
                 <h5 class="modal-title" id="exampleModalLabel">No : 0219202213CUST00035</h5>
             </div>
             <div class="modal-body">
-                <form action="#" method="post">
+                <form action="/transaction/update/{{ $id }}" method="post">
+                    @method('PUT')
+                    @csrf
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Status</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
+                        <select name="status" class="form-control" id="exampleFormControlSelect1">
                             <option value="complete">Complete</option>
+                            <option value="pending">Pending</option>
                             <option value="reject">Reject</option>
                         </select>
                     </div>
-                </form>
-                <div class="row">
-                    <div class="col-8">
-                        <input type="text" class="form-control form-control-muted" placeholder="Filename.png" disabled>
+                    <div class="row">
+                        @if ($transaction_images)
+                            @foreach ($transaction_images as $item)
+                                <div class="col-8">
+                                    <input type="text" class="form-control form-control-muted"
+                                        placeholder="{{ $item->filename }}" disabled>
+                                </div>
+                                <div class="col">
+                                    <a href="/admin/download/{{ $item->filename }}"
+                                        class="btn btn-secondary">Download</a>
+                                </div>
+                            @endforeach
+                        @endif
+                        <div class="col-8">
+                            <input type="text" class="form-control form-control-muted" placeholder="" disabled>
+                        </div>
+                        <div class="col">
+                            <a href="#" class="btn btn-secondary">Download</a>
+                        </div>
                     </div>
-                    <div class="col">
-                        <form action="/upload/download/{{ $transaction_id }}" method="post">
-                            @csrf
-                            <button type="submit" class="btn btn-secondary">Download</button>
-                        </form>                        
-                    </div>
-                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
+            </form>
         </div>
     </div>
 </div>

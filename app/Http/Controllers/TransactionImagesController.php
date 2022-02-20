@@ -31,7 +31,13 @@ class TransactionImagesController extends Controller
         }
     }
     public function download(Request $request)
+    {        
+        return Storage::download("public/bukti_bayar/{$request->filename}");        
+    }
+
+    public function details(Request $request)
     {
-        dd($request->transaction_id);
+        $data = TransactionImages::where('transaction_id', $request->transaction_id);
+        dd($data);
     }
 }

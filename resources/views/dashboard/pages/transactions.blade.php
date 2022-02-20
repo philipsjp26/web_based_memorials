@@ -27,11 +27,14 @@
                             </thead>
                             <tbody>
                                 @php
+                                    $id = null;
                                     $transaction_id = null;
+                                    $transaction_images = null;
                                 @endphp
                                 @foreach ($data as $item)
                                     @php
-                                        $transaction_id = $item->id;
+                                        $id = $item->id;
+                                        $transaction_images = $item->transaction_images;
                                     @endphp
                                     <tr>
                                         <td>
@@ -42,24 +45,35 @@
                                             </div>
                                         </td>
                                         <td>
+
                                             @if ($item->status == 'pending')
                                                 <span class="badge badge-sm bg-gradient-secondary">Pending</span>
-                                            @else
+                                            @elseif($item->status == 'complete')
                                                 <span class="badge badge-sm bg-gradient-success">Completed</span>
+                                            @else
+                                                <span class="badge badge-sm bg-gradient-danger">Rejected</span>
                                             @endif
                                         </td>
                                         <td class="align-middle text-center">
                                             <span
                                                 class="text-secondary text-sm font-weight-bold">{{ $item->created_at }}</span>
                                         </td>
-                                        <td class="align-center text-center">
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#transactionModal">Update</button>
-                                            <a class="btn btn-danger" href="#">Delete</a>
-                                        </td>
+                                        <form action="/transaction/destroy/{{ $item->id }}" method="post">
+                                            <td class="align-center text-center">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#transactionModal">Update</button>
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" name="filename" class="btn btn-danger">Delete</button>
+                                            </td>
+                                        </form>
                                     </tr>
                                 @endforeach
-                                @include('dashboard.components.modal_transaction', ['transaction_id' => $transaction_id]);
+                                @include('dashboard.components.modal_transaction',
+                                [
+                                'id' => $id,
+                                'transaction_images' => $transaction_images
+                                ]);
                             </tbody>
                         </table>
                     </div>
