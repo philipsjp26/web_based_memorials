@@ -21,6 +21,9 @@
                                             Transaction</a>
                                         <a href="#account-info" data-bs-toggle="tab"><i class="fa fa-user"></i> Account
                                             Details</a>
+                                        <a href="#payment-method" data-bs-toggle="tab"><i class="fa fa-credit-card"></i>
+                                            Payment
+                                            Method</a>
                                         <form id="form1" action="/auth/logout" method="post">
                                             @csrf
                                             @method('POST')
@@ -171,7 +174,7 @@
                                                             $transaction_id = null;
                                                         @endphp
                                                         <tbody>
-                                                            @foreach ($transaction as $trx)                                                                
+                                                            @foreach ($transaction as $trx)
                                                                 @php
                                                                     $transaction_id = $trx->id;
                                                                 @endphp
@@ -204,6 +207,16 @@
                                             </div>
                                         </div>
                                         <!-- Single Tab Content End -->
+                                        
+                                        <!-- Single Tab Content Start -->
+                                        <div class="tab-pane fade" id="payment-method" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Payment Method</h3>
+                                                <p class="saved-message">You Can't Saved Your Payment Method yet.</p>
+                                            </div>
+                                        </div>
+                                        <!-- Single Tab Content End -->
+
                                     </div>
                                 </div> <!-- My Account Tab Content End -->
                             </div>

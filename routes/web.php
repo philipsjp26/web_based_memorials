@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerTransactionsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemorialsController;
+use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\TransactionImagesController;
 use App\Models\CustomerTransactions;
@@ -33,6 +34,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/dashboard/memorials', [DashboardController::class, 'memorials']);
     Route::get('/profile', [DashboardController::class, 'profile_detail']);
     Route::get('/download/{filename}', [DashboardController::class, 'download']);
+    Route::get('/list/bank', [PaymentMethodController::class, 'index']);
+    Route::post('/create/bank', [PaymentMethodController::class, 'create']);
 });
 // == End of line Route Dashboard
 
