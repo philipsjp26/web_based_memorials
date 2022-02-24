@@ -33,7 +33,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'isAdmin'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/dashboard/transactions', [DashboardController::class, 'transactions']);
     Route::get('/dashboard/memorials', [DashboardController::class, 'memorials']);
-    Route::get('/profile', [DashboardController::class, 'profile_detail']);
+    Route::get('/profile/{id}', [DashboardController::class, 'profile_detail']);
     Route::get('/download/{filename}', [DashboardController::class, 'download']);
     Route::get('/list/bank', [PaymentMethodController::class, 'index']);
     Route::post('/create/bank', [PaymentMethodController::class, 'create']);

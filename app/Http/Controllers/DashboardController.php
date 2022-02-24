@@ -39,10 +39,11 @@ class DashboardController extends Controller
     }
     public function profile_detail(Request $request)
 
-    {
+    {    
+        $data = Account::find($request->id);
         $page_login = $request->get('page_login');
 
-        return view("dashboard.pages.profile", compact('page_login'));
+        return view("dashboard.pages.profile", compact('data','page_login'));
     }
     public function download(Request $request)
     {

@@ -21,6 +21,9 @@
                                         Created At</th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Role</th>
+                                    <th
+                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Action</th>
                                     <th class="text-secondary opacity-7"></th>
                                 </tr>
@@ -49,10 +52,14 @@
                                         </td>
                                         <td class="align-middle text-center">
                                             <span
-                                                class="text-secondary text-sm font-weight-bold">{{ $item->created_at }}</span>
+                                            class="text-secondary text-sm font-weight-bold">{{ $item->created_at }}</span>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <a class="btn btn-warning" href="/admin/profile">Edit</a>
+                                            <span
+                                                class="text-secondary text-sm font-weight-bold">{{ $item->role }}</span>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <a class="btn btn-warning" href="/admin/profile/{{ $item->id }}">Edit</a>
                                             <a class="btn btn-danger" href="#">Delete</a>
                                         </td>
                                     </tr>

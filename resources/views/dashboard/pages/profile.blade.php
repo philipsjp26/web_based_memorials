@@ -22,7 +22,7 @@
                             Public Relations
                         </p>
                     </div>
-                </div>          
+                </div>
             </div>
         </div>
     </div>
@@ -32,47 +32,32 @@
                 <div class="card">
                     <div class="card-header pb-0">
                         <div class="d-flex align-items-center">
-                            <p class="mb-0">Edit Profile</p>                            
+                            <p class="mb-0">Edit Profile</p>
                         </div>
                     </div>
                     <div class="card-body">
-                        <p class="text-uppercase text-sm">User Information</p>
+                        <p class="text-uppercase text-sm">Account Information</p>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Username</label>
-                                    <input class="form-control" type="text" value="lucky.jesse">
+                                    <input class="form-control" name="username" type="text"
+                                        value="{{ $data->username }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Email address</label>
-                                    <input class="form-control" type="email" value="jesse@example.com">
+                                    <input class="form-control" name="email" type="email" value="{{ $data->email }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">First name</label>
-                                    <input class="form-control" type="text" value="Jesse">
+                                    <label for="exampleFormControlSelect1">Account Type</label>
+                                    <input class="form-control" name="account_type" type="text"
+                                        value="{{ $data->type }}" disabled>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Last name</label>
-                                    <input class="form-control" type="text" value="Lucky">
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="horizontal dark">
-                        <p class="text-uppercase text-sm">Contact Information</p>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Address</label>
-                                    <input class="form-control" type="text"
-                                        value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
-                                </div>
-                            </div>  
                         </div>
                     </div>
                 </div>
@@ -93,15 +78,21 @@
                     </div>
                     <div class="card-header text-center border-0 pt-0 pt-lg-2 pb-4 pb-lg-3">
                         <div class="d-flex justify-content-between">
-                            <a href="javascript:;" class="btn btn-sm btn-info float-right mb-0 d-none d-lg-block">Premium</a>
+                            @if ($data->type == 'freemium')
+                                <a href="javascript:;"
+                                    class="btn btn-sm btn-secondary float-right mb-0 d-none d-lg-block">{{ $data->type }}</a>
+                            @else
+                                <a href="javascript:;"
+                                    class="btn btn-sm btn-info float-right mb-0 d-none d-lg-block">{{ $data->type }}</a>
+                            @endif
                             <a href="javascript:;" class="btn btn-sm btn-info mb-0 d-block d-lg-none"><i
-                                    class="ni ni-collection"></i></a>                             
+                                    class="ni ni-collection"></i></a>
                         </div>
                     </div>
                     <div class="card-body pt-0">
                         <div class="row">
                             <div class="col">
-                                <div class="d-flex justify-content-center">                              
+                                <div class="d-flex justify-content-center">
                                     <div class="d-grid text-center mx-4">
                                         <span class="text-lg font-weight-bolder">10</span>
                                         <span class="text-sm opacity-8">Photos</span>
@@ -115,11 +106,11 @@
                         </div>
                         <div class="text-center mt-4">
                             <h5>
-                                Mark Davis<span class="font-weight-light">, 35</span>
+                                {{ $data->username }}
                             </h5>
                             <div class="h6 font-weight-300">
-                                <i class="ni location_pin mr-2"></i>Bucharest, Romania
-                            </div> 
+                                <i class="ni location_pin mr-2"></i>{{ $data->email }}
+                            </div>
                         </div>
                     </div>
                 </div>
