@@ -9,6 +9,7 @@ use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\TransactionImagesController;
 use App\Models\CustomerTransactions;
+use App\Models\PaymentMethods;
 use App\Models\TransactionImages;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/download/{filename}', [DashboardController::class, 'download']);
     Route::get('/list/bank', [PaymentMethodController::class, 'index']);
     Route::post('/create/bank', [PaymentMethodController::class, 'create']);
+    Route::put('/update/bank/{id}', [PaymentMethodController::class, 'update']);
+    Route::delete('/destroy/bank/{id}', [PaymentMethodController::class, 'delete']);
 });
 // == End of line Route Dashboard
 
@@ -50,6 +53,7 @@ Route::group(['prefix' => 'memorial', 'middleware' => 'isLogin'], function () {
     Route::post('/create', [MemorialsController::class, 'create']);
     Route::post('/add/images/{id}', [MemorialsController::class, 'addMoreImages']);
     Route::put('/update/{id}', [MemorialsController::class, 'update']);
+    Route::delete('/destroy/{id}', [MemorialsController::class, 'delete']);
 });
 
 Route::group(['prefix' => 'feature', 'middleware' => 'isLogin'], function () {

@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\Traits\ActionsMemorials;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
-use Exception;
+use PDO;
 
 class Memorials extends Model
 {
@@ -87,4 +87,5 @@ class Memorials extends Model
     {
         return $this->belongsToMany(Reviews::class, 'memorials_reviews', 'memorial_id', 'review_id');
     }
+
 }

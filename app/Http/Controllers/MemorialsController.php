@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\MemorialImages;
 use Illuminate\Http\Request;
 use App\Models\Memorials;
+use App\Models\MemorialsAccounts;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Image;
@@ -68,7 +70,7 @@ class MemorialsController extends Controller
         $data = Memorials::find($id);
 
         $memorial_image = new MemorialImages();
-        $validate = $memorial_image->validate_total_image($id);        
+        $validate = $memorial_image->validate_total_image($id);
         if ($validate['status'] == true) {
             Alert::error('Validate', $validate['message']);
             return back();
@@ -85,7 +87,7 @@ class MemorialsController extends Controller
             }
             Alert::success('Success', "Images has bean added");
             return back();
-        }
+        }        
     }
     public function update(Request $request, $id)
     {
@@ -109,5 +111,37 @@ class MemorialsController extends Controller
         if (!is_null($description)) create_or_update_memorial_description($data, $description);
         Alert::success('Success', 'Successfully updated data');
         return back();
+    }
+    public function delete(Request $request)
+    {
+        $data = Memorials::with('memorialImages')
+            ->whereHas('memorialImages', function ($q) use ($request) {
+                $q->where('memorial_id', '=', $request->id);
+            })->get();
+        $memorial = Memorials::find($request->id);
+        try {
+            //code...
+            foreach ($data as $items) {
+                # code...
+                
+                $count_items = count($items->memorialImages->pluck('title'));                
+                for ($i = 0; $i < $count_items; $i++) {
+                    # code...
+                    Storage::delete("public/images/$items->memorialImages->pluck('title')[$i]");
+                }
+            }       
+            $memorial_image = MemorialImages::whereMemorialId($request->id);
+            $memorial_image->delete();       
+            $memorial_accounts = MemorialsAccounts::whereMemorialsId($request->id);
+            $memorial_accounts->delete();
+            $memorial->delete();
+                                                           
+            toast('Memorials Deleted', 'warning');
+            return back();
+        } catch (\Exception $e) {
+            //throw $th;
+            Alert::error('Error', $e->getMessage());
+            return back();
+        }
     }
 }

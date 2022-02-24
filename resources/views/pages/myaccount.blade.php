@@ -54,25 +54,35 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @php
-                                                                $no = 1;
-                                                            @endphp
-                                                            @foreach ($dashboard as $item)
-                                                                <tr>
-                                                                    <td>{{ $no++ }}</td>
-                                                                    <td>{{ $item->first_name }}</td>
-                                                                    <td>{{ $item->gender }}</td>
-                                                                    <td>{{ $item->relationship->name }}</td>
-                                                                    <td>{{ $item->category->name }}</td>
-                                                                    <td class="d-flex justify-content-evenly">
-                                                                        <a href="detail/{{ $item->id }}"
-                                                                            class="btn btn__warning"
-                                                                            style="border-radius: 10%">Edit</a>
-                                                                        <a href="#" class="btn btn__bg"
-                                                                            style="border-radius: 10%">Delete</a>
-                                                                    </td>
-                                                                </tr>
-                                                            @endforeach
+                                                            @if (count($dashboard) > 0)
+                                                                @php
+                                                                    $no = 1;
+                                                                @endphp
+                                                                @foreach ($dashboard as $item)
+                                                                    <tr>
+                                                                        <td>{{ $no++ }}</td>
+                                                                        <td>{{ $item->first_name }}</td>
+                                                                        <td>{{ $item->gender }}</td>
+                                                                        <td>{{ $item->relationship->name }}</td>
+                                                                        <td>{{ $item->category->name }}</td>
+                                                                        <form action="/memorial/destroy/{{ $item->id }}"
+                                                                            method="post">
+                                                                            @method('DELETE')
+                                                                            @csrf
+                                                                            <td class="d-flex justify-content-evenly">
+                                                                                <a href="detail/{{ $item->id }}"
+                                                                                    class="btn btn__warning"
+                                                                                    style="border-radius: 10%">Edit</a>
+                                                                                <button type="submit" class="btn btn__bg"
+                                                                                    style="border-radius: 10%">
+                                                                                    Delete
+                                                                                </button>
+                                                                            </td>
+                                                                        </form>
+                                                                    </tr>
+                                                                @endforeach
+                                                            @endif
+
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -170,49 +180,78 @@
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
-                                                        @php
-                                                            $transaction_id = null;
-                                                        @endphp
                                                         <tbody>
-                                                            @foreach ($transaction as $trx)
+                                                            @if ($transaction != null)
                                                                 @php
-                                                                    $transaction_id = $trx->id;
+                                                                    $transaction_id = null;
                                                                 @endphp
-                                                                <tr>
-                                                                    <td>{{ $trx->public_uid }}</td>
-                                                                    <td>{{ $trx->status }}</td>
-                                                                    <td>{{ $trx->created_at }}</td>
-                                                                    <td class="d-flex justify-content-evenly">
-                                                                        <button type="button" data-bs-toggle="modal"
-                                                                            data-bs-target="#modalUploadFile"
-                                                                            class="btn btn__warning"
-                                                                            style="border-radius: 10%">
-                                                                            Upload</button>
+                                                                @foreach ($transaction as $trx)
+                                                                    @php
+                                                                        $transaction_id = $trx->id;
+                                                                    @endphp
+                                                                    <tr>
+                                                                        <td>{{ $trx->public_uid }}</td>
+                                                                        <td>{{ $trx->status }}</td>
+                                                                        <td>{{ $trx->created_at }}</td>
+                                                                        <td class="d-flex justify-content-evenly">
+                                                                            <button type="button" data-bs-toggle="modal"
+                                                                                data-bs-target="#modalUploadFile"
+                                                                                class="btn btn__warning"
+                                                                                style="border-radius: 10%">
+                                                                                Upload</button>
 
-                                                                        <button type="button" data-bs-toggle="modal"
-                                                                            data-bs-target="#modalTransactionDetail"
-                                                                            class="btn btn__primary"
-                                                                            style="border-radius: 10%">
-                                                                            Details</button>
-                                                                    </td>
-                                                                </tr>
-                                                            @endforeach
-                                                            @include('components.modal_upload', ['transaction_id' =>
-                                                            $transaction_id])
-                                                            @include('components.modal_details_transaction',
-                                                            ['transaction_id' => $transaction_id, 'image' => $image])
+                                                                            <button type="button" data-bs-toggle="modal"
+                                                                                data-bs-target="#modalTransactionDetail"
+                                                                                class="btn btn__primary"
+                                                                                style="border-radius: 10%">
+                                                                                Details</button>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                                @include('components.modal_upload', ['transaction_id' =>
+                                                                $transaction_id])
+                                                                @include('components.modal_details_transaction',
+                                                                ['transaction_id' => $transaction_id, 'image' => $image])
+                                                            @else
+                                                            @endif
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- Single Tab Content End -->
-                                        
+
                                         <!-- Single Tab Content Start -->
                                         <div class="tab-pane fade" id="payment-method" role="tabpanel">
                                             <div class="myaccount-content">
                                                 <h3>Payment Method</h3>
-                                                <p class="saved-message">You Can't Saved Your Payment Method yet.</p>
+                                                @if ($transaction != null)
+                                                    @foreach ($transaction as $item)
+                                                        @if ($item->status == 'complete')
+                                                            <p class="saved-message">No Transaction Yet</p>
+                                                        @else
+                                                            <div class="myaccount-table table-responsive text-center">
+                                                                <table class="table table-bordered">
+                                                                    <thead class="thead-light">
+                                                                        <tr>
+                                                                            <th>Code</th>
+                                                                            <th>Bank Name</th>
+                                                                            <th>Account Number</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>BCA</td>
+                                                                            <td>Bank Central Asia</td>
+                                                                            <td>7685217881</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+
                                             </div>
                                         </div>
                                         <!-- Single Tab Content End -->

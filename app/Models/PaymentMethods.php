@@ -13,6 +13,7 @@ class PaymentMethods extends Model
         'updated_at' => 'datetime:Y-m-d H:m:s'
     ];
     protected $fillable = [
+        'id',
         'bank_name', 'account_number'
     ];
 }

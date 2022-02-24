@@ -2,9 +2,8 @@
 
 namespace App\Traits;
 
-use Ramsey\Uuid\Exception\UnableToBuildUuidException;
-use Ramsey\Uuid\Uuid as Generator;
 use Carbon\Carbon as Time;
+use Exception;
 
 trait Uuid
 {
@@ -21,7 +20,7 @@ trait Uuid
             try {
                 $uuid = self::get_time() . 'CUST000' . Time::now()->format('s');
                 $model->public_uid = strtoupper($uuid);
-            } catch (UnableToBuildUuidException $e) {
+            } catch (Exception $e) {
                 abort(500, $e->getMessage());
             }
         });

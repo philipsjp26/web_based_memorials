@@ -19,15 +19,7 @@
                                         <img src="{{ url('storage/images/' . $data->memorialImages->first()->title) }}"
                                             alt="product-details" />
                                     </div>
-                                </div>
-                                {{-- <div class="pro-nav slick-row-10 slick-arrow-style">
-                                    @foreach ($data->memorialImages as $item)
-                                        <div class="pro-nav-thumb">
-                                            <img src="{{ url('storage/images/' . $item->title) }}"
-                                                alt="product-details" />
-                                        </div>
-                                    @endforeach
-                                </div> --}}
+                                </div>                     
                             </div>
                             <div class="col-lg-7">
                                 <div class="product-details-des">

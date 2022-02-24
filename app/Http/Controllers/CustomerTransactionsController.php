@@ -23,6 +23,7 @@ class CustomerTransactionsController extends Controller
     public function update(Request $request){
         $data = CustomerTransactions::find((int) $request->id);
         $data->update(['status' => $request->status]);
+        toast('Success updated', 'success');
         return back();
     }
     public function delete(Request $request){
@@ -31,6 +32,7 @@ class CustomerTransactionsController extends Controller
         $filename = $data->transaction_images->last()->filename;
         Storage::delete("public/bukti_bayar/$filename");
         $data->destroy((int) $request->id);
+        toast('Transaction deleted', 'warning');
         return back();
     }
 }

@@ -32,10 +32,6 @@
                                     <tr>
                                         <td>
                                             <div class="d-flex px-2 py-1">
-                                                <div>
-                                                    <img src="{{ asset('dashboard/assets/img/team-2.jpg') }}"
-                                                        class="avatar avatar-sm me-3" alt="user1">
-                                                </div>
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="mb-0 text-sm">{{ $item->bank_name }}</h6>
                                                     <p class="text-xs text-secondary mb-0">{{ $item->account_number }}</p>
@@ -50,10 +46,14 @@
                                             <span
                                                 class="text-secondary text-sm font-weight-bold">{{ $item->created_at }}</span>
                                         </td>
-                                        <td class="align-middle text-center">
-                                            <a class="btn btn-warning" href="/admin/profile">Edit</a>
-                                            <a class="btn btn-danger" href="#">Delete</a>
-                                        </td>
+                                        <form action="/admin/destroy/bank/{{ $item->id }}" method="post">
+                                            <td class="align-middle text-center">
+                                                <a class="btn btn-warning" href="#">Edit</a>
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </td>
+                                        </form>
                                     </tr>
                                 @endforeach
                                 @include('dashboard.components.modal_payment_methods')
