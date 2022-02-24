@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MemorialDescription;
 use App\Models\MemorialImages;
 use Illuminate\Http\Request;
 use App\Models\Memorials;
 use App\Models\MemorialsAccounts;
+use App\Models\MemorialsReviews;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -49,11 +51,13 @@ class MemorialsController extends Controller
                 $data->date_of_birth = $request->date_of_birth;
                 $data->date_of_death = $request->date_of_death;
                 $data->alamat = $request->alamat;
-                $imageName = time() . '.' . $request->image->extension();
-                $path = $request->image->storeAs('public/images', $imageName);
+                $filename = time() . '.' . $request->image->extension();
+                $img = Image::make($request->file('image')->path());
+                $destination = public_path('/storage/images/');
+                $img->save($destination . $filename, 80);
                 $data->save();
                 $data->accounts()->attach($request->get('accounts_id'));
-                $data->createMemorialImages($imageName, $path);
+                $data->createMemorialImages($filename, 'coba');
                 Alert::success('Success', 'Memorial has been created');
             }
             return back();
@@ -119,6 +123,7 @@ class MemorialsController extends Controller
                 $q->where('memorial_id', '=', $request->id);
             })->get();
         $memorial = Memorials::find($request->id);
+    
         try {
             //code...
             foreach ($data as $items) {
@@ -126,15 +131,21 @@ class MemorialsController extends Controller
                 
                 $count_items = count($items->memorialImages->pluck('title'));                
                 for ($i = 0; $i < $count_items; $i++) {
-                    # code...
-                    Storage::delete("public/images/$items->memorialImages->pluck('title')[$i]");
+                    # code...                    
+                    Storage::delete("public/images/".$items->memorialImages->pluck('title')[$i]);
                 }
             }       
             $memorial_image = MemorialImages::whereMemorialId($request->id);
             $memorial_image->delete();       
             $memorial_accounts = MemorialsAccounts::whereMemorialsId($request->id);
             $memorial_accounts->delete();
+            $memorial_reviews = MemorialsReviews::whereMemorialId($request->id);
+            $memorial_reviews->delete();
+            $memorial_description = MemorialDescription::whereMemorialId($request->id);
+            // dd($memorial_description);
+            $memorial_description->delete();
             $memorial->delete();
+
                                                            
             toast('Memorials Deleted', 'warning');
             return back();
