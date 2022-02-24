@@ -28,8 +28,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 
 //  == Route Dashboard ==
-Route::group(['prefix' => 'admin'], function () {
-    Route::get('/dashboard/login', [DashboardController::class, 'login']);
+Route::get('/dashboard/login', [DashboardController::class, 'login'])->name('dashboardLogin');
+Route::group(['prefix' => 'admin', 'middleware' => 'isAdmin'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/dashboard/transactions', [DashboardController::class, 'transactions']);
     Route::get('/dashboard/memorials', [DashboardController::class, 'memorials']);

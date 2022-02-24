@@ -26,13 +26,17 @@
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
-    <div class="min-height-300 bg-primary position-absolute w-100"></div>
-    @include('dashboard.components.sidebar')
-    <main class="main-content border-radius-lg">
-        @include('dashboard.components.navbar')
-        @yield('content')
-        @yield('profile')
-    </main>
+    @if ($page_login)
+        @yield('login')
+    @else
+        <div class="min-height-300 bg-primary position-absolute w-100"></div>
+        @include('dashboard.components.sidebar')
+        <main class="main-content border-radius-lg">
+            @include('dashboard.components.navbar')
+            @yield('content')
+            @yield('profile')
+        </main>
+    @endif
     <script src="{{ asset('dashboard/assets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('dashboard/assets/js/core/bootstrap.min.js') }}"></script>
     <script src="{{ asset('dashboard/assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
