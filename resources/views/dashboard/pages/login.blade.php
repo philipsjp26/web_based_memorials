@@ -12,17 +12,19 @@
                                     <p class="mb-0">Enter your email and password to sign in</p>
                                 </div>
                                 <div class="card-body">
-                                    <form role="form">
+                                    <form role="form" action="/auth/login" method="post">
+                                        @csrf
                                         <div class="mb-3">
-                                            <input type="email" class="form-control form-control-lg" placeholder="Email"
-                                                aria-label="Email">
+                                            <input type="email" name="email" class="form-control form-control-lg"
+                                                placeholder="Email" aria-label="Email" @error('email') is-invalid @enderror
+                                                autofocus required autocomplete="off" value="{{ old('email') }}">
                                         </div>
                                         <div class="mb-3">
-                                            <input type="email" class="form-control form-control-lg" placeholder="Password"
+                                            <input type="password" name="password" class="form-control form-control-lg" placeholder="Password"
                                                 aria-label="Password">
                                         </div>
                                         <div class="text-center">
-                                            <button type="button" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Sign
+                                            <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Sign
                                                 in</button>
                                         </div>
                                     </form>
@@ -40,7 +42,7 @@
                             class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
                             <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden"
                                 style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg');
-                      background-size: cover;">
+                              background-size: cover;">
                                 <span class="mask bg-gradient-primary opacity-6"></span>
                                 <h4 class="mt-5 text-white font-weight-bolder position-relative">"Attention is the new
                                     currency"</h4>

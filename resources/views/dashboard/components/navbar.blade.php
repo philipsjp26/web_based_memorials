@@ -23,12 +23,27 @@
                       </div>
                   </div>
                   <ul class="navbar-nav justify-content-end">
-                      <li class="nav-item d-flex align-items-center">
-                          <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
-                              <i class="fa fa-user me-sm-1"></i>
-
-                              <span class="d-sm-inline d-none">Sign In</span>
+                      <li class="nav-item dropdown pe-2 d-flex align-items-center">
+                          <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton"
+                              data-bs-toggle="dropdown" aria-expanded="false">
+                              @auth
+                                  <span>Welcome, {{ auth()->user()->username }}</span>
+                              @endauth
                           </a>
+                          <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4"
+                              aria-labelledby="dropdownMenuButton">
+                              <li class="mb-2">
+                                  <form action="/auth/logout" method="post">
+                                      @csrf
+                                      <a class="dropdown-item border-radius-md" href="javascript:;">
+                                          <div class="d-flex flex-column d-flex justify-content-center">
+                                              <button type="submit"
+                                                  class="btn btn-primary justify-content-center">logout</button>
+                                          </div>
+                                      </a>
+                                  </form>
+                              </li>
+                          </ul>
                       </li>
                   </ul>
               </div>
