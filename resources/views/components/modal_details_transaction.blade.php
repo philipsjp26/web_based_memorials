@@ -9,8 +9,9 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form action="/upload/download/{{ $transaction_id }}" method="post">
-                        @csrf
+                    <form action="/upload/download/{{ $transaction_id }}" method="get">
+                        @csrf                        
+                        @method('GET')
                         @if ($image)
                             @foreach ($image->transaction_images as $item)
                                 <div class="col-8 my-1">
@@ -22,15 +23,7 @@
                                         class="btn btn-success">Download</button>
                                 </div>
                             @endforeach
-                        @endif
-                        <div class="col-8 my-1">
-                            <input class="form-control" type="text" placeholder=""
-                                aria-label="Disabled input example" disabled>
-                        </div>
-                        <div class="col my-1">
-                            <button type="submit" name="filename" value=""
-                                class="btn btn-success">Download</button>
-                        </div>
+                        @endif                 
                     </form>
                 </div>
             </div>

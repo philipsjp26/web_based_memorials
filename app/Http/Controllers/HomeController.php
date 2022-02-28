@@ -53,9 +53,10 @@ class HomeController extends Controller
     {
         $account_id = $request->get('accounts_id');
 
-        $data = Account::with(['customer_transactions' => function ($q) use ($account_id) {
-            $q->where('account_id', '=', $account_id);
-        }])->get();
+        $data = Account::with('customer_transactions')
+            ->whereHas('customer_transactions', function ($q) use ($request) {
+                $q->where('account_id', '=', $request->get('accounts_id'));
+            })->get();        
         return view('pages.PlanAndFeature', compact('data'));
     }
     public function pageFreemium()
@@ -73,6 +74,7 @@ class HomeController extends Controller
             $query->where('account_id', '=', $request->get('accounts_id'));
         }])->first();
         $account = Account::find($request->get('accounts_id'));
+
         if ($transaction != null) {
 
             $transaction = count($transaction->accounts) > 0 ? $transaction->accounts->first()->customer_transactions : null;
@@ -80,7 +82,7 @@ class HomeController extends Controller
             if (!is_null($transaction)) {
                 $transaction_id = $transaction->pluck('id')->first();
                 $image = CustomerTransactions::find($transaction_id);
-                return view('pages.myaccount', compact('dashboard', 'transaction', 'image'));
+                return view('pages.myaccount', compact('account', 'dashboard', 'transaction', 'image'));
             }
         }
 

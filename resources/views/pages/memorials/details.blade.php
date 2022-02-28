@@ -37,13 +37,13 @@
                                                 data-bs-target="#modalEdit">
                                                 Edit
                                             </button>
-                                            <button class="btn btn__primary" data-bs-toggle="modal"
+                                            <button class="btn btn__primary" style="margin-right: 10px" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModalImages">
                                                 Add Images
                                             </button>
                                         @endif
                                     @endauth
-                                    <button data-bs-toggle="modal" data-bs-target="#modalApproved"
+                                    <button style="font-size: 14px; padding: 10px 20px; border-radius: 0" data-bs-toggle="modal" data-bs-target="#modalApproved"
                                         class="btn btn-success">Claim Family</button>
                                 </div>
                             </div>

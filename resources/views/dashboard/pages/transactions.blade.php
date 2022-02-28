@@ -30,11 +30,13 @@
                                     $id = null;
                                     $transaction_id = null;
                                     $transaction_images = null;
+                                    $transaction_number = null;
                                 @endphp
                                 @foreach ($data as $item)
                                     @php
                                         $id = $item->id;
                                         $transaction_images = $item->transaction_images;
+                                        $transaction_number = $item->public_uid;
                                     @endphp
                                     <tr>
                                         <td>
@@ -60,8 +62,13 @@
                                         </td>
                                         <form action="/transaction/destroy/{{ $item->id }}" method="post">
                                             <td class="align-center text-center">
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#transactionModal">Update</button>
+                                                @if ($item->status == 'complete')
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#transactionModal" disabled>Update</button>
+                                                @else
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#transactionModal">Update</button>
+                                                @endif
                                                 @method('DELETE')
                                                 @csrf
                                                 <button type="submit" name="filename" class="btn btn-danger">Delete</button>
@@ -72,7 +79,8 @@
                                 @include('dashboard.components.modal_transaction',
                                 [
                                 'id' => $id,
-                                'transaction_images' => $transaction_images
+                                'transaction_images' => $transaction_images,
+                                'transaction_number' => $transaction_number
                                 ]);
                             </tbody>
                         </table>

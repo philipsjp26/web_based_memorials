@@ -69,19 +69,18 @@
                     <form action="/transaction/create" method="post">
                         @csrf
                         @method('POST')
-                        @foreach ($data as $item)
-                            @if (count($item->customer_transactions) > 0)
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success rounded" disabled>Request Upgrade</button>
-                                </div>
-                            @else
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success rounded">Request Upgrade</button>
-                                </div>
-                            @endif
-                        @endforeach
+                        @if (count($data) > 0)
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success rounded" disabled>Request Upgrade</button>
+                            </div>
+                        @else
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success rounded">Request Upgrade</button>
+                            </div>
+                        @endif
+                        {{-- @endforeach --}}
                     </form>
                 </div>
             </div>

@@ -95,6 +95,7 @@
                                             <div class="myaccount-content">
                                                 <div class="d-flex justify-content-between">
                                                     <h3>Account Details</h3>
+
                                                     @if ($account->type == 'freemium')
                                                         <button class="btn btn__primary px-4 py-2 rounded">Freemium</button>
                                                     @else
@@ -158,7 +159,8 @@
                                                                             <button type="button" data-bs-toggle="modal"
                                                                                 data-bs-target="#modalUploadFile"
                                                                                 class="btn btn__warning"
-                                                                                style="border-radius: 10%">
+                                                                                style="border-radius: 10%"
+                                                                                {{ $trx->status == 'complete' ? 'disabled' : '' }}>
                                                                                 Upload</button>
 
                                                                             <button type="button" data-bs-toggle="modal"

@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">No : 0219202213CUST00035</h5>
+                <h5 class="modal-title" id="exampleModalLabel">{{ $transaction_number }}</h5>
             </div>
             <div class="modal-body">
                 <form action="/transaction/update/{{ $id }}" method="post">
@@ -31,12 +31,6 @@
                                 </div>
                             @endforeach
                         @endif
-                        <div class="col-8">
-                            <input type="text" class="form-control form-control-muted" placeholder="" disabled>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="btn btn-secondary">Download</a>
-                        </div>
                     </div>
             </div>
             <div class="modal-footer">

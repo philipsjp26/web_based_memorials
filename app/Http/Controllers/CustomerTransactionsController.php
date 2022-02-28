@@ -23,6 +23,7 @@ class CustomerTransactionsController extends Controller
     public function update(Request $request){
         $data = CustomerTransactions::find((int) $request->id);
         $data->update(['status' => $request->status]);
+        $data->account()->update(['type' => 'premium']);
         toast('Success updated', 'success');
         return back();
     }
