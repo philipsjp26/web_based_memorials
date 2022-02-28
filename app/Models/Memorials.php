@@ -87,5 +87,8 @@ class Memorials extends Model
     {
         return $this->belongsToMany(Reviews::class, 'memorials_reviews', 'memorial_id', 'review_id');
     }
-
+    public function claimMemorials()
+    {
+        return $this->hasMany(ClaimMemorials::class, 'memorial_id');
+    }
 }

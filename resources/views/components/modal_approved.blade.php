@@ -7,21 +7,29 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="#" method="post">
+                <form action="/home/claim" method="post" enctype="multipart/form-data">
                     @csrf
+                    @method('POST')
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Fullname</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Fullname">
+                        <input type="text" name="fullname" class="form-control" id="exampleFormControlInput1" required
+                            placeholder="Fullname">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Relationship</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Relationship">
+                        <input type="text" name="relationship" class="form-control" required
+                            id="exampleFormControlInput1" placeholder="Relationship">
                     </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">File Image</label>
+                        <input class="form-control" name="image" required type="file" id="formFile" multiple>
+                    </div>
+                    <input type="hidden" name="memorial_id" value="{{ $memorial_id }}">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-success">Apply</button>
+                <button type="submit" name="account_id" value="{{ auth()->user()->id }}" class="btn btn-success"
+                    {{ auth()->user() == null ? 'disabled' : '' }}>Apply</button>
             </div>
             </form>
         </div>

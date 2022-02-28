@@ -29,4 +29,7 @@ class Account extends AuthAccount
     {
         return $this->hasMany(CustomerTransactions::class, 'account_id');
     }
+    public function claimMemorials(){
+        return $this->hasMany(ClaimMemorials::class, 'account_id');
+    }
 }

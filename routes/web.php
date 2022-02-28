@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClaimMemorialController;
 use App\Http\Controllers\CustomerTransactionsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -44,8 +45,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'isAdmin'], function () {
 
 Route::group(['prefix' => 'transaction', 'middleware' => 'isLogin'], function () {
     Route::post('/create', [CustomerTransactionsController::class, 'create']);
-    Route::put('/update/{id}', [CustomerTransactionsController::class, 'update']);  
-    Route::delete('/destroy/{id}', [CustomerTransactionsController::class, 'delete']);  
+    Route::put('/update/{id}', [CustomerTransactionsController::class, 'update']);
+    Route::delete('/destroy/{id}', [CustomerTransactionsController::class, 'delete']);
 });
 
 
@@ -61,7 +62,6 @@ Route::group(['prefix' => 'feature', 'middleware' => 'isLogin'], function () {
 });
 
 Route::group(['prefix' => 'reviews'], function () {
-    // Route::get('/list', [ReviewsController::class, 'index']);
     Route::post('/create', [ReviewsController::class, 'create']);
 });
 
@@ -73,6 +73,7 @@ Route::prefix('/home')->group(function () {
     Route::get('/detail/{id}', [HomeController::class, 'pageDetail']);
     Route::get('/myaccount', [HomeController::class, 'pageMyAccount'])->middleware('isLogin');
     Route::post('/create', [HomeController::class, 'createMemorial']);
+    Route::post('/claim', [ClaimMemorialController::class, 'create'])->middleware('isLogin');
 });
 Route::prefix('auth')->group(function () {
     Route::get('login', [AuthController::class, 'pageLogin']);

@@ -1,7 +1,6 @@
 @extends('layouts.home')
 
 @section('content')
-
     <!-- page main wrapper start -->
     <div class="shop-main-wrapper section-space">
         <div class="container">
@@ -19,7 +18,7 @@
                                         <img src="{{ url('storage/images/' . $data->memorialImages->first()->title) }}"
                                             alt="product-details" />
                                     </div>
-                                </div>                     
+                                </div>
                             </div>
                             <div class="col-lg-7">
                                 <div class="product-details-des">
@@ -43,8 +42,9 @@
                                             </button>
                                         @endif
                                     @endauth
-                                    <button style="font-size: 14px; padding: 10px 20px; border-radius: 0" data-bs-toggle="modal" data-bs-target="#modalApproved"
-                                        class="btn btn-success">Claim Family</button>
+                                    <button style="font-size: 14px; padding: 10px 20px; border-radius: 0"
+                                        data-bs-toggle="modal" data-bs-target="#modalApproved" class="btn btn-success">Claim
+                                        Family</button>
                                 </div>
                             </div>
 
@@ -88,14 +88,16 @@
                                             <label for="exampleInputEmail1">Gender : </label>
                                             <div class="form-check">
                                                 <input name="gender" value="Male" class="form-check-input" type="radio"
-                                                    name="flexRadioDefault" id="flexRadioDefault1" @if ($data->gender == 'Male') checked @endif>
+                                                    name="flexRadioDefault" id="flexRadioDefault1"
+                                                    @if ($data->gender == 'Male') checked @endif>
                                                 <label class="form-check-label" for="flexRadioDefault1">
                                                     Male
                                                 </label>
                                             </div>
                                             <div class="form-check">
                                                 <input name="gender" value="Female" class="form-check-input" type="radio"
-                                                    name="flexRadioDefault" id="flexRadioDefault2" @if ($data->gender == 'Female') checked @endif>
+                                                    name="flexRadioDefault" id="flexRadioDefault2"
+                                                    @if ($data->gender == 'Female') checked @endif>
                                                 <label class="form-check-label" for="flexRadioDefault2">
                                                     Female
                                                 </label>
@@ -104,16 +106,16 @@
                                                 <label for="exampleFormControlTextarea1">About</label>
                                                 <textarea name="description" class="form-control"
                                                     id="exampleFormControlTextarea1" cols="30" rows="10">
-                                                                        @if ($data->memorialDescription)
+                                                                                                                    @if ($data->memorialDescription)
     {{ $data->memorialDescription->description }}
     @endif
-                                                                        </textarea>
+                                                                                                                    </textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea2">Life</label>
                                                 <textarea name="life" class="form-control" id="" cols="30" rows="10">
-                                                                {{ $data->memorialDescription ? $data->memorialDescription->life : '' }}
-                                                            </textarea>
+                                                                                                            {{ $data->memorialDescription ? $data->memorialDescription->life : '' }}
+                                                                                                        </textarea>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -128,7 +130,7 @@
                     </div>
                     <!-- Quick view modal end -->
                     @include('components.modal', $data)
-                    @include('components.modal_approved')
+                    @include('components.modal_approved', ['memorial_id' => $data->id])
                     @include('components.tab_memorial_details', $data)
                 </div>
                 <!-- product details wrapper end -->
