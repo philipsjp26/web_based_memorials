@@ -13,16 +13,18 @@
                     </div>
                 </div>
                 <div id="dataList" class="row">
+                    {{-- {{ dd($data)}} --}}
                     @foreach ($data as $memorial)
+                        {{-- {{ dd($memorial)}} --}}
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product-item">
                                 <figure class="product-thumb">
                                     <a href="#">
-                                        @if (count($memorial['memorial_images']) > 0)
-                                            <img class="pri-img"
-                                                src="{{ url('storage/images/' . $memorial['memorial_images'][0]['title']) }}"
-                                                alt="product">
 
+                                        @if (count($memorial->memorialImages) != null)
+                                            <img class="pri-img"
+                                                src="{{ url('storage/images/' . $memorial->memorialImages[0]['title']) }}"
+                                                alt="product">
                                         @else
                                             <img class="pri-img" src="#" alt="product">
                                         @endif
@@ -48,11 +50,10 @@
                             </div>
                         </div>
                     @endforeach
-                    <div class="col-12">
-                        <div class="view-more-btn">
-                            <a class="btn-hero btn-load-more" href="#">view more</a>
-                        </div>
-                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+
+                    {!! $data->links() !!}
                 </div>
             </div>
         </section>

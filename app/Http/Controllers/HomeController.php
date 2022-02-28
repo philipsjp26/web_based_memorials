@@ -14,7 +14,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $data = Memorials::with('memorialImages')->paginate();
+        $data = Memorials::with('memorialImages')->paginate(8);
+        
         $totalMemorials = Memorials::count();
         $totalAccounts = Account::count();
         return view('components.slider', compact('data', 'totalMemorials', 'totalAccounts'));

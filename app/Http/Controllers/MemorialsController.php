@@ -65,10 +65,7 @@ class MemorialsController extends Controller
             //throw $th;
             return $e->getMessage();
         }
-    }
-    public function getDetail(Request $request)
-    {
-    }
+    } 
     public function addMoreImages(Request $request, $id)
     {
         $data = Memorials::find($id);

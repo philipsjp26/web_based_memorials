@@ -41,9 +41,9 @@
                 </div>
             </div>
             <!-- single slider item start -->
+
         </div>
     </section>
     <!-- slider area end -->
-    @include('pages.main', $data);
-
+    @include('pages.main', ['data' => $data]);
 @endsection

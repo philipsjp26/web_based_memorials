@@ -52,11 +52,10 @@
                                         </td>
                                         <td class="align-middle text-center">
                                             <span
-                                            class="text-secondary text-sm font-weight-bold">{{ $item->created_at }}</span>
+                                                class="text-secondary text-sm font-weight-bold">{{ $item->created_at }}</span>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span
-                                                class="text-secondary text-sm font-weight-bold">{{ $item->role }}</span>
+                                            <span class="text-secondary text-sm font-weight-bold">{{ $item->role }}</span>
                                         </td>
                                         <td class="align-middle text-center">
                                             <a class="btn btn-warning" href="/admin/profile/{{ $item->id }}">Edit</a>
@@ -64,6 +63,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                {!! $data->render() !!}
                             </tbody>
                         </table>
                     </div>

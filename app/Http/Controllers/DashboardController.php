@@ -24,7 +24,7 @@ class DashboardController extends Controller
     }
     public function memorials(Request $request)
     {
-        $data = Memorials::paginate(15);
+        $data = Memorials::paginate(8);
         $page_login = $request->get('page_login');
 
         return view('dashboard.pages.memorials', compact('data', 'page_login'));

@@ -74,7 +74,8 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-                        </table>                        
+                        </table>
+                        {!! $data->render() !!}
                     </div>
                 </div>
             </div>
