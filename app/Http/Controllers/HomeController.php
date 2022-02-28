@@ -72,19 +72,18 @@ class HomeController extends Controller
         $transaction = Memorials::with(['accounts.customer_transactions' => function ($query) use ($request) {
             $query->where('account_id', '=', $request->get('accounts_id'));
         }])->first();
-        if($transaction != null){
-            
+        $account = Account::find($request->get('accounts_id'));
+        if ($transaction != null) {
+
             $transaction = count($transaction->accounts) > 0 ? $transaction->accounts->first()->customer_transactions : null;
-     
-            if(!is_null($transaction)){
+
+            if (!is_null($transaction)) {
                 $transaction_id = $transaction->pluck('id')->first();
                 $image = CustomerTransactions::find($transaction_id);
                 return view('pages.myaccount', compact('dashboard', 'transaction', 'image'));
             }
+        }
 
-        }  
-        return view('pages.myaccount', compact('dashboard', 'transaction'));
-
-        
+        return view('pages.myaccount', compact('account', 'dashboard', 'transaction'));
     }
 }

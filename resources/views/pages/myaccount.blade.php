@@ -95,68 +95,29 @@
                                             <div class="myaccount-content">
                                                 <div class="d-flex justify-content-between">
                                                     <h3>Account Details</h3>
-                                                    <button class="btn btn__primary px-4 py-2 rounded">Freemium</button>
+                                                    @if ($account->type == 'freemium')
+                                                        <button class="btn btn__primary px-4 py-2 rounded">Freemium</button>
+                                                    @else
+                                                        <button class="btn btn-success px-4 py-2 rounded">Premium</button>
+                                                    @endif
                                                 </div>
                                                 <div class="account-details-form">
                                                     <form action="#">
                                                         <div class="row">
-                                                            <div class="col-lg-6">
-                                                                <div class="single-input-item">
-                                                                    <label for="first-name" class="required">First
-                                                                        Name</label>
-                                                                    <input type="text" id="first-name"
-                                                                        placeholder="First Name" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <div class="single-input-item">
-                                                                    <label for="first-name" class="required">Middle
-                                                                        Name</label>
-                                                                    <input type="text" id="first-name"
-                                                                        placeholder="First Name" />
-                                                                </div>
-                                                            </div>
                                                             <div class="col-lg-12">
                                                                 <div class="single-input-item">
-                                                                    <label for="last-name" class="required">Last
-                                                                        Name</label>
-                                                                    <input type="text" id="last-name"
-                                                                        placeholder="Last Name" />
+                                                                    <label for="username"
+                                                                        class="required">Username</label>
+                                                                    <input type="text" name="username" id="username"
+                                                                        placeholder="{{ $account->username }}" />
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="single-input-item">
                                                             <label for="email" class="required">Email Address</label>
-                                                            <input type="email" id="email" placeholder="Email Address" />
+                                                            <input type="email" id="email"
+                                                                placeholder="{{ $account->email }}" />
                                                         </div>
-                                                        <fieldset>
-                                                            <legend>Password change</legend>
-                                                            <div class="single-input-item">
-                                                                <label for="current-pwd" class="required">Current
-                                                                    Password</label>
-                                                                <input type="password" id="current-pwd"
-                                                                    placeholder="Current Password" />
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-lg-6">
-                                                                    <div class="single-input-item">
-                                                                        <label for="new-pwd" class="required">New
-                                                                            Password</label>
-                                                                        <input type="password" id="new-pwd"
-                                                                            placeholder="New Password" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-6">
-                                                                    <div class="single-input-item">
-                                                                        <label for="confirm-pwd"
-                                                                            class="required">Confirm
-                                                                            Password</label>
-                                                                        <input type="password" id="confirm-pwd"
-                                                                            placeholder="Confirm Password" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </fieldset>
                                                         <div class="single-input-item">
                                                             <button class="btn btn__bg">Save Changes</button>
                                                         </div>
