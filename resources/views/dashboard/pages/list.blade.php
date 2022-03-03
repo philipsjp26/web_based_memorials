@@ -1,4 +1,4 @@
-@extends('dashboard.index', ['navbar' => $navbar])
+@extends('dashboard.index')
 
 @section('content')
     <div class="container-fluid py-4">
