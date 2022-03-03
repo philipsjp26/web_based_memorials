@@ -54,7 +54,6 @@
                                         </td>
                                         <td class="align-middle text-center">
                                             <h6 class="mb-0 text-sm">{{ $item->relationship->name }}</h6>
-                                            {{-- <span class="text-secondary text-sm font-weight-bold">2020-01-01</span> --}}
                                         </td>
                                         <td class="align-middle text-center">
                                             <h6 class="mb-0 text-sm">{{ $item->gender }}</h6>
@@ -67,10 +66,15 @@
                                             <span
                                                 class="text-secondary text-sm font-weight-bold">{{ $item->date_of_death }}</span>
                                         </td>
-                                        <td class="align-middle text-center">
-                                            <a class="btn btn-warning" href="#">Edit</a>
-                                            <a class="btn btn-danger" href="#">Delete</a>
-                                        </td>
+                                        <form action="/memorial/destroy/{{ $item->id }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <td class="align-middle text-center">
+                                                <a class="btn btn-warning" href="#">Edit</a>
+
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </td>
+                                        </form>
                                     </tr>
                                 @endforeach
                             </tbody>

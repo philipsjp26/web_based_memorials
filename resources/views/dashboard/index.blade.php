@@ -32,7 +32,7 @@
         <div class="min-height-300 bg-primary position-absolute w-100"></div>
         @include('dashboard.components.sidebar')
         <main class="main-content border-radius-lg">
-            @include('dashboard.components.navbar')
+            @include('dashboard.components.navbar', ['navbar' => $navbar])
             @yield('content')
             @yield('profile')
         </main>

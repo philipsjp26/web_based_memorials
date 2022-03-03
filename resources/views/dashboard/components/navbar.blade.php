@@ -60,7 +60,7 @@
                                       <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                           Total Transactions
                                       </p>
-                                      <h5 class="font-weight-bolder">10</h5>
+                                      <h5 class="font-weight-bolder">{{ $navbar['totalTransaction'] }}</h5>
                                       <p class="mb-6"></p>
                                   </div>
                               </div>
@@ -83,7 +83,7 @@
                                       <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                           Total Accounts
                                       </p>
-                                      <h5 class="font-weight-bolder">10</h5>
+                                      <h5 class="font-weight-bolder">{{ $navbar['totalAccount'] }}</h5>
                                       <p class="mb-6"></p>
                                   </div>
                               </div>
@@ -106,7 +106,7 @@
                                       <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                           Total Memorials
                                       </p>
-                                      <h5 class="font-weight-bolder">10</h5>
+                                      <h5 class="font-weight-bolder">{{ $navbar['totalMemorial'] }}</h5>
                                       <p class="mb-6"></p>
                                   </div>
                               </div>

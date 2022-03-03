@@ -14,8 +14,17 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $data = Account::paginate(15);
+
+        $totalAccount = Account::count();
+        $totalTransaction = CustomerTransactions::count();
+        $totalMemorial = Memorials::count();
+
+        $navbar = array('totalAccount' => $totalAccount, 
+                        'totalTransaction' => $totalTransaction,
+                        'totalMemorial' => $totalMemorial);
+
         $page_login = $request->get('page_login');
-        return view('dashboard.pages.list', compact('data', 'page_login'));
+        return view('dashboard.pages.list', compact('data', 'page_login', 'navbar'));
     }
     public function login()
     {
@@ -39,11 +48,11 @@ class DashboardController extends Controller
     }
     public function profile_detail(Request $request)
 
-    {    
+    {
         $data = Account::find($request->id);
         $page_login = $request->get('page_login');
 
-        return view("dashboard.pages.profile", compact('data','page_login'));
+        return view("dashboard.pages.profile", compact('data', 'page_login'));
     }
     public function download(Request $request)
     {
