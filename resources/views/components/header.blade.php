@@ -94,22 +94,10 @@
                     <div class="col-12">
                         <div class="mobile-main-header">
                             <div class="mobile-logo">
-                                <a href="index.html">
-                                    <img src={{ asset('img/logo/logo.png') }} alt="Brand Logo">
+                                <a href="/">
+                                    <img width="95px" height="29px" src={{ asset('img/logo/dooka.png') }} alt="">
                                 </a>
-                            </div>
-                            <div class="mobile-menu-toggler">
-                                <div class="mini-cart-wrap">
-                                    <a href="cart.html">
-                                        <i class="lnr lnr-cart"></i>
-                                    </a>
-                                </div>
-                                <div class="mobile-menu-btn">
-                                    <div class="off-canvas-btn">
-                                        <i class="lnr lnr-menu"></i>
-                                    </div>
-                                </div>
-                            </div>
+                            </div>            
                         </div>
                     </div>
                 </div>
