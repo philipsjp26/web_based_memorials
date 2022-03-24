@@ -28,8 +28,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" name="account_id" value="{{ auth()->user()->id }}" class="btn btn-success"
-                    {{ auth()->user() == null ? 'disabled' : '' }}>Apply</button>
+                <button type="submit" name="account_id" value="{{ auth()->user() == null ? 'disabled' : '' }}"
+                    class="btn btn-success" {{ auth()->user() == null ? 'disabled' : '' }}>Apply</button>
             </div>
             </form>
         </div>
