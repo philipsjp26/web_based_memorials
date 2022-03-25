@@ -1,4 +1,5 @@
         <!-- our product area start -->
+        <div class=" bg-img" data-bg={{ asset('img/background/main_background.webp') }}>
         <section class="our-product section-space">
             <div class="container">
                 <div class="row">
@@ -15,7 +16,7 @@
                                 <div class="form-inline my-3 d-flex flex-row flex-wrap justify-content-center">
                                     <div class="form-group mx-sm-3 mb-2">
                                         <label class="sr-only">First name</label>
-                                        <input type="text" class="form-control" placeholder="First name">
+                                        <input type="text" class="form-control" placeholder="First name" id="first_name">
                                     </div>
                                     {{-- <div class="form-group mx-sm-3 mb-2">
                                         <label class="sr-only">Middle name</label>
@@ -23,10 +24,13 @@
                                     </div> --}}
                                     <div class="form-group mx-sm-3 mb-2">
                                         <label for="inputPassword2" class="sr-only">Last name</label>
-                                        <input type="text" class="form-control" placeholder="Last name">
+                                        <input type="text" class="form-control" placeholder="Last name" id="last_name">
                                     </div>
-                                    <button type="submit" class="btn btn-hero mb-2"
-                                        style="border-radius: 14px; padding: 10px 16px">Get Started</button>
+                                    <a href="/home/create">
+                                        <button type="submit" class="btn btn-hero mb-2"
+                                            style="border-radius: 14px; padding: 10px 16px"
+                                            onclick="store()">Get Started</button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -79,5 +83,15 @@
                 </div>
             </div>
         </section>
+        </div>
+
+        {{-- <script>
+            function store() {
+                var first_name = document.getElementById("first_name").value;
+                var last_name = document.getElementById("last_name").value;
+                localStorage.setItem("first", first_name);
+                localStorage.setItem("last", last_name);
+            }
+        </script> --}}
 
         <!-- our product area end -->
