@@ -23,7 +23,7 @@ class Account extends AuthAccount
     }
     public function memorials()
     {
-        return $this->belongsToMany(Memorials::class, 'memorials_accounts');
+        return $this->belongsToMany(Memorials::class, 'memorials_accounts', 'accounts_id');
     }
     public function customer_transactions()
     {

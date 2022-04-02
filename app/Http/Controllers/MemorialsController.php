@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
 use App\Models\MemorialDescription;
 use App\Models\MemorialImages;
 use Illuminate\Http\Request;
@@ -17,7 +18,11 @@ class MemorialsController extends Controller
 {
     public function create(Request $request)
     {
-        // dd('Chek'.$request->get('account_id'));
+        $account_type = Account::find($request->get('accounts_id'));        
+        if($account_type == 'freemium' && count($account_type) == 1) {
+            Alert::error("Error", 'Your account is freemium, please upgrade to premium');
+            return back();
+        } 
         $credentials = Validator::make($request->all(), [
             'first_name' => 'required|max:255',
             'nik' => 'required',

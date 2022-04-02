@@ -31,7 +31,7 @@
                                         habitasse platea dictumst.</p>
 
 
-                                    @if (Auth::check() == true)                                        
+                                    @if (Auth::check() == true)
                                         @if (auth()->user()->id == $account_id)
                                             <button class="btn btn__bg" style="margin-right: 10px" data-bs-toggle="modal"
                                                 data-bs-target="#modalEdit">
@@ -107,11 +107,10 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">About</label>
-                                                <textarea name="description" class="form-control"
-                                                    id="exampleFormControlTextarea1" cols="30" rows="10">
+                                                <textarea name="description" class="form-control" id="exampleFormControlTextarea1" cols="30" rows="10">
                                                                                                                         @if ($data->memorialDescription)
-    {{ $data->memorialDescription->description }}
-    @endif
+{{ $data->memorialDescription->description }}
+@endif
                                                                                                                         </textarea>
                                             </div>
                                             <div class="form-group">

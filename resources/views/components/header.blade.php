@@ -32,8 +32,7 @@
                                                 </ul>
                                             </li>
                                             <li><a href="/home/features">Plans & Features</a>
-                                            </li>
-                                            <li><a href="#">Contact us</a></li>
+                                            </li>                                            
                                         </ul>
                                     </nav>
                                     <!-- main menu navbar end -->

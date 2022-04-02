@@ -11,7 +11,7 @@
                         <a data-bs-toggle="tab" href="#tab_two">life</a>
                     </li>
                     <li>
-                        <a data-bs-toggle="tab" href="#tab_three">review</a>
+                        <a data-bs-toggle="tab" href="#tab_three">testimoni</a>
                     </li>
                     <li>
                         <a data-bs-toggle="tab" href="#tab_four">gallery</a>
