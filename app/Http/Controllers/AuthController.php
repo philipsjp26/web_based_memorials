@@ -48,7 +48,11 @@ class AuthController extends Controller
     }
     public function register(Request $request)
     {
-
+        $check_is_exist = Account::where('email', $request->email)->get();
+        if(count($check_is_exist) > 0) {
+            Alert::error('Error', 'Account already exist');
+            return view('pages.register');
+        }
         $req = Validator::make($request->all(), [
             'email' => 'required|max:255',
             'username' => 'required|max:255',
