@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
 use App\Models\MemorialDescription;
 use App\Models\MemorialImages;
 use Illuminate\Http\Request;
@@ -17,7 +18,11 @@ class MemorialsController extends Controller
 {
     public function create(Request $request)
     {
-        // dd('Chek'.$request->get('account_id'));
+        $account_type = Account::find($request->get('accounts_id'));        
+        if($account_type == 'freemium' && count($account_type) == 1) {
+            Alert::error("Error", 'Your account is freemium, please upgrade to premium');
+            return back();
+        } 
         $credentials = Validator::make($request->all(), [
             'first_name' => 'required|max:255',
             'nik' => 'required',
@@ -104,12 +109,14 @@ class MemorialsController extends Controller
             Alert::error('Error', $credentials->errors()->first());
             return back();
         }
+        
         $data = Memorials::find($id);
-        $data->first_name = $request->first_name;
-        $data->middle_name = $request->middle_name;
-        $data->last_name = $request->last_name;
+        $data->first_name = is_null($request->first_name) ? $data->first_name : $request->first_name;
+        $data->middle_name = is_null($request->middle_name) ? $data->middle_name : $request->middle_name;
+        $data->last_name = is_null($request->last_name) ? $data->last_name : $request->last_name;
         $data->gender = $data->getGenderAttribute($request->gender);
         if (!is_null($description)) create_or_update_memorial_description($data, $description);
+        $data->save();
         Alert::success('Success', 'Successfully updated data');
         return back();
     }

@@ -21,9 +21,10 @@ class MemorialImages extends Model
 
     public function validate_total_image($memorial_id)
     {
-        $max_memorial_images = env('max_upload_image');
-        $count = self::where('memorial_id', $memorial_id)->count();
-        if ($count >= (int)$max_memorial_images ) {
+        $max_memorial_images = 5;
+        $count = self::where('memorial_id', $memorial_id)->count();    
+        
+        if ((int)$max_memorial_images <= $count) {
             $response['status'] = true;
             $response['message'] = 'Maximum file upload is 5, Please upgrade your account';
         } else {
