@@ -82,7 +82,7 @@
                                     <div class="col">
                                         <label class="col-form-label"><span class="text-danger">*</span>
                                             Date Of Birth</label>
-                                        <input name="date_of_birth" type="text" class="form-control" placeholder="yyyy-mm-dd" autocomplete="off"
+                                        <input name="date_of_birth" type="date" class="form-control" placeholder="yyyy-mm-dd" autocomplete="off"
                                             required>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@
                                     <div class="col">
                                         <label class="col-form-label"><span class="text-danger">*</span>
                                             Date of Death</label>
-                                        <input name="date_of_death" type="text" class="form-control" placeholder="yyyy-mm-dd" autocomplete="off"
+                                        <input name="date_of_death" type="date" class="form-control" placeholder="yyyy-mm-dd" autocomplete="off"
                                             required>
                                     </div>
                                 </div>

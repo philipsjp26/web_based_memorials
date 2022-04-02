@@ -104,12 +104,14 @@ class MemorialsController extends Controller
             Alert::error('Error', $credentials->errors()->first());
             return back();
         }
+        
         $data = Memorials::find($id);
-        $data->first_name = $request->first_name;
-        $data->middle_name = $request->middle_name;
-        $data->last_name = $request->last_name;
+        $data->first_name = is_null($request->first_name) ? $data->first_name : $request->first_name;
+        $data->middle_name = is_null($request->middle_name) ? $data->middle_name : $request->middle_name;
+        $data->last_name = is_null($request->last_name) ? $data->last_name : $request->last_name;
         $data->gender = $data->getGenderAttribute($request->gender);
         if (!is_null($description)) create_or_update_memorial_description($data, $description);
+        $data->save();
         Alert::success('Success', 'Successfully updated data');
         return back();
     }
