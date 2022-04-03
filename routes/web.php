@@ -5,6 +5,7 @@ use App\Http\Controllers\ClaimMemorialController;
 use App\Http\Controllers\CustomerTransactionsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\MemorialsController;
 use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\ReviewsController;
@@ -27,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/mail', [MailController::class, 'index']);
 
 //  == Route Dashboard ==
 Route::get('/dashboard/login', [DashboardController::class, 'login'])->name('dashboardLogin');

@@ -39,6 +39,7 @@
                         <div class="section-title text-center">
                             <h2>Memorials</h2>
                             <div class="class">
+                                <a href="/mail">Click</a>
                                 <p>Total Memorials : {{ $totalMemorials }} </p>
                                 <p>Total Accounts : {{ $totalAccounts }}</p>
                             </div>
