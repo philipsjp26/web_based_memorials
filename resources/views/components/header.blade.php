@@ -27,12 +27,12 @@
                                             <li class="active"><a href="/">Home </a>
                                             </li>
                                             <li><a href="#">Pages<i class="fa fa-angle-down"></i></a>
-                                                <ul class="dropdown">                                                    
+                                                <ul class="dropdown">
                                                     <li><a href="/home/create">Create Memorials</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="/home/features">Plans & Features</a>
-                                            </li>                                            
+                                            </li>
                                         </ul>
                                     </nav>
                                     <!-- main menu navbar end -->
@@ -76,8 +76,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- mini cart area end -->
-
                     </div>
                 </div>
             </div>
@@ -94,15 +92,68 @@
                         <div class="mobile-main-header">
                             <div class="mobile-logo">
                                 <a href="/">
-                                    <img width="95px" height="29px" src={{ asset('img/logo/dooka.png') }} alt="">
+                                    <img width="95px" height="29px" src={{ asset('img/logo/dooka.png') }}
+                                        alt="Brand Logo">
                                 </a>
-                            </div>            
+                            </div>
+                            <div class="mobile-menu-toggler">
+                                <div class="mobile-menu-btn">
+                                    <div class="off-canvas-btn">
+                                        <i class="lnr lnr-menu"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- mobile header top start -->
         </div>
-        <!-- mobile header end -->
+        <!-- end Header Area -->
     </header>
-    <!-- end Header Area -->
+
+    <!-- off-canvas menu start -->
+    <aside class="off-canvas-wrapper">
+        <div class="off-canvas-overlay"></div>
+        <div class="off-canvas-inner-content">
+            <div class="btn-close-off-canvas">
+                <i class="lnr lnr-cross"></i>
+            </div>
+            <div class="off-canvas-inner">
+                <div class="mobile-settings">
+                    <ul class="nav">
+                        @auth
+                            <li>
+                                <div class="dropdown mobile-top-dropdown">
+                                    <a href="#" class="dropdown-toggle" id="myaccount" data-bs-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        Hi, {{ auth()->user()->username }}
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <form action="/auth/logout" method="post">
+                                        @csrf
+
+                                        <button type="submit" style="color: grey">Logout</button>
+                                    </form>
+                                </div>
+                            </li>
+                        @else
+                            <div class="mobile-navigation">
+                                <nav>
+                                    <ul class="mobile-menu">
+                                        <li class="menu-item-has-children"><a href="index.html">Account</a>
+                                            <ul class="dropdown">
+                                                <li><a href="/auth/login">Login</a></li>
+                                                <li><a href="/auth/register">Register</a></li>                                                
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        @endauth
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <!-- off-canvas menu end -->
