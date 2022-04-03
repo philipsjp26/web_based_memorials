@@ -17,6 +17,16 @@ class Account extends AuthAccount
         'updated_at' => 'datetime:Y-m-d H:m:s'
     ];
 
+    public static function deleteAccount($id)
+    {        
+        $account = self::find($id);
+        $account->memorials()->delete();
+        $account->customer_transactions()->delete();
+        $account->claimMemorials()->delete();
+        $account->delete();
+    
+    }
+
     public function getId()
     {
         return $this->id;
@@ -29,7 +39,8 @@ class Account extends AuthAccount
     {
         return $this->hasMany(CustomerTransactions::class, 'account_id');
     }
-    public function claimMemorials(){
+    public function claimMemorials()
+    {
         return $this->hasMany(ClaimMemorials::class, 'account_id');
     }
 }

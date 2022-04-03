@@ -40,6 +40,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'isAdmin'], function () {
     Route::post('/create/bank', [PaymentMethodController::class, 'create']);
     Route::put('/update/bank/{id}', [PaymentMethodController::class, 'update']);
     Route::delete('/destroy/bank/{id}', [PaymentMethodController::class, 'delete']);
+    Route::delete('/destroy/account/{id}', [DashboardController::class, 'deleteAccount']);
 });
 // == End of line Route Dashboard
 

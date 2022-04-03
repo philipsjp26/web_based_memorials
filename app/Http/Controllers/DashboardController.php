@@ -19,9 +19,11 @@ class DashboardController extends Controller
         $totalTransaction = CustomerTransactions::count();
         $totalMemorial = Memorials::count();
 
-        $navbar = array('totalAccount' => $totalAccount, 
-                        'totalTransaction' => $totalTransaction,
-                        'totalMemorial' => $totalMemorial);
+        $navbar = array(
+            'totalAccount' => $totalAccount,
+            'totalTransaction' => $totalTransaction,
+            'totalMemorial' => $totalMemorial
+        );
 
         $page_login = $request->get('page_login');
         return view('dashboard.pages.list', compact('data', 'page_login', 'navbar'));
@@ -59,5 +61,11 @@ class DashboardController extends Controller
         // $page_login = $request->get('page_login');
 
         return Storage::download("public/bukti_bayar/{$request->filename}");
+    }
+
+    public function deleteAccount(Request $request)
+    {
+        $data = Account::deleteAccount((int) $request->id);
+        return back();
     }
 }
