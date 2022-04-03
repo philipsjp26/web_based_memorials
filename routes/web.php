@@ -68,7 +68,7 @@ Route::group(['prefix' => 'reviews'], function () {
 Route::prefix('/home')->group(function () {
     Route::get('/list', [HomeController::class, 'pageList']);
     Route::get('/search', [HomeController::class, 'searching'])->name('search');
-    Route::get('/features', [HomeController::class, 'pagePlanAndFeatures']);
+    Route::get('/features', [HomeController::class, 'pagePlanAndFeatures'])->middleware('isLogin');
     Route::get('/create', [HomeController::class, 'pageCreate'])->middleware('isLogin');
     Route::get('/detail/{id}', [HomeController::class, 'pageDetail']);
     Route::get('/myaccount', [HomeController::class, 'pageMyAccount'])->middleware('isLogin');
