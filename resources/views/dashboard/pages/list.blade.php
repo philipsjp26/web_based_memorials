@@ -57,10 +57,15 @@
                                         <td class="align-middle text-center">
                                             <span class="text-secondary text-sm font-weight-bold">{{ $item->role }}</span>
                                         </td>
-                                        <td class="align-middle text-center">
-                                            <a class="btn btn-warning" href="/admin/profile/{{ $item->id }}">Edit</a>
-                                            <a class="btn btn-danger" href="#">Delete</a>
-                                        </td>
+                                        <form action="/admin/destroy/account/{{ $item->id }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <td class="align-middle text-center">
+                                                <a class="btn btn-warning"
+                                                    href="/admin/profile/{{ $item->id }}">Edit</a>
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </td>
+                                        </form>
                                     </tr>
                                 @endforeach
                                 {!! $data->render() !!}
