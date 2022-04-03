@@ -74,8 +74,14 @@
                                         <select name="memorial_category" id="memorials">
                                             @foreach ($category as $kategori)
                                                 <option value="{{ $kategori->id }}">{{ $kategori->name }}</option>
-                                            @endforeach
-                                        </select>
+                                                @endforeach
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col">                                        
+                                            Other Relationship</label>
+                                        <input name="other_relationship" type="text" class="form-control" autocomplete="off" placeholder="optional ( if selected relationship to other ) ">
                                     </div>
                                 </div>
                                 <div class="form-group row">
