@@ -10,8 +10,8 @@
                         <!-- start logo area -->
                         <div class="col-lg-3">
                             <div class="logo">
-                                <a href="index.html">
-                                    <img src={{ asset('img/logo/logo.png') }} alt="">
+                                <a href="/">
+                                    <img width="95px" height="29px" src={{ asset('img/logo/dooka.png') }} alt="">
                                 </a>
                             </div>
                         </div>
@@ -26,17 +26,13 @@
                                         <ul>
                                             <li class="active"><a href="/">Home </a>
                                             </li>
-                                            <li><a href="/home/list">Pages<i class="fa fa-angle-down"></i></a>
-                                                <ul class="dropdown">
-                                                    <li><a href="/home/list">List Of Memorials</a></li>
+                                            <li><a href="#">Pages<i class="fa fa-angle-down"></i></a>
+                                                <ul class="dropdown">                                                    
                                                     <li><a href="/home/create">Create Memorials</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="#">Plans & Features</a>
-                                            </li>
-                                            <li><a href="#">Blog</a>
-                                            </li>
-                                            <li><a href="#">Contact us</a></li>
+                                            <li><a href="/home/features">Plans & Features</a>
+                                            </li>                                            
                                         </ul>
                                     </nav>
                                     <!-- main menu navbar end -->
@@ -50,14 +46,20 @@
                             <div class="header-configure-wrapper">
                                 <div class="header-configure-area">
                                     <ul class="nav justify-content-end">
+                                        <li>
+                                            <a href="#" class="offcanvas-btn">
+                                                <i class="lnr lnr-magnifier"></i>
+                                            </a>
+                                            @include('components.search')
+                                        </li>
                                         <li class="user-hover">
                                             <a href="/">
                                                 <i class="lnr lnr-user"></i>
                                             </a>
                                             <ul class="dropdown-list">
                                                 @auth
-                                                    <li><a href="#">Hi, {{ auth()->user()->username}}</a></li>
-                                                    <li><a href="#">My Account</a></li>
+                                                    <li><a href="#">Hi, {{ auth()->user()->username }}</a></li>
+                                                    <li><a href="/home/myaccount">My Account</a></li>
                                                     <form action="/auth/logout" method="post">
                                                         @csrf
                                                         <li>
@@ -91,22 +93,10 @@
                     <div class="col-12">
                         <div class="mobile-main-header">
                             <div class="mobile-logo">
-                                <a href="index.html">
-                                    <img src={{ asset('img/logo/logo.png') }} alt="Brand Logo">
+                                <a href="/">
+                                    <img width="95px" height="29px" src={{ asset('img/logo/dooka.png') }} alt="">
                                 </a>
-                            </div>
-                            <div class="mobile-menu-toggler">
-                                <div class="mini-cart-wrap">
-                                    <a href="cart.html">
-                                        <i class="lnr lnr-cart"></i>
-                                    </a>
-                                </div>
-                                <div class="mobile-menu-btn">
-                                    <div class="off-canvas-btn">
-                                        <i class="lnr lnr-menu"></i>
-                                    </div>
-                                </div>
-                            </div>
+                            </div>            
                         </div>
                     </div>
                 </div>

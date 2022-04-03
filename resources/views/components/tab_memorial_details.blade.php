@@ -11,7 +11,11 @@
                         <a data-bs-toggle="tab" href="#tab_two">life</a>
                     </li>
                     <li>
+<<<<<<< HEAD
                         <a data-bs-toggle="tab" href="#tab_three">review</a>
+=======
+                        <a data-bs-toggle="tab" href="#tab_three">testimoni</a>
+>>>>>>> b39e2372f9e39e2a093e9d08041047edf02f7544
                     </li>
                     <li>
                         <a data-bs-toggle="tab" href="#tab_four">gallery</a>

@@ -32,15 +32,27 @@ class AuthController extends Controller
         ]);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            // Alert::success('Success', 'Hi, ' . Auth::user()->username);
-            return redirect()->intended('/');
+            switch (auth()->user()->role) {
+                case 'user':
+                    # code...
+                    return redirect()->intended('/');
+                case 'admin':
+                    return redirect()->intended('/admin/dashboard');
+                default:
+                    # code...
+                    return redirect()->intended('/');
+            }
         }
         Alert::error('Error', 'Invalid login');
         return back();
     }
     public function register(Request $request)
     {
-
+        $check_is_exist = Account::where('email', $request->email)->get();
+        if(count($check_is_exist) > 0) {
+            Alert::error('Error', 'Account already exist');
+            return view('pages.register');
+        }
         $req = Validator::make($request->all(), [
             'email' => 'required|max:255',
             'username' => 'required|max:255',

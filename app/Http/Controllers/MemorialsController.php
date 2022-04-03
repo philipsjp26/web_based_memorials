@@ -2,49 +2,161 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
+use App\Models\MemorialDescription;
+use App\Models\MemorialImages;
 use Illuminate\Http\Request;
 use App\Models\Memorials;
+use App\Models\MemorialsAccounts;
+use App\Models\MemorialsReviews;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
+use Image;
 
 class MemorialsController extends Controller
 {
     public function create(Request $request)
     {
-
+        $account_type = Account::find($request->get('accounts_id'));           
+        if($account_type->type == 'freemium' && count($account_type->memorials) == 1) {
+            Alert::error("Error", 'Your account is freemium, please upgrade to premium');
+            return back();
+        } 
         $credentials = Validator::make($request->all(), [
             'first_name' => 'required|max:255',
-            'middle_name' => 'required',
             'nik' => 'required',
             'gender' => 'required',
             'relationship' => 'required',
             'memorial_category' => 'required',
-            'image' => 'required|image|mimes:jpeg,jpg,png,|max:2048'
+            'image' => 'required|image|mimes:jpeg,jpg,png,|max:2048',
+            'alamat' => 'required|max:255',
+            'date_of_birth' => 'date_format:Y-m-d',
+            'date_of_death' => 'date_format:Y-m-d'
         ]);
         if ($credentials->fails()) {
-            Alert::error('Error', $credentials);
+            Alert::error('Error', $credentials->errors()->first());
             return back();
         }
         try {
 
-            $imageName = time() . '.' . $request->image->extension();
-
-            $request->image->move(public_path('images'), $imageName);
             $data = new Memorials;
-            $data->first_name = $request->first_name;
-            $data->middle_name = $request->middle_name;
-            $data->last_name = $request->last_name;
-            $data->nik = $request->nik;
-            $data->gender = $data->getGenderAttribute($request->gender);
-            $data->relationship_id = $request->relationship;
-            $data->category_id = $request->memorial_category;
-            $data->save();
-            insertIntoMemorialImages($data, $imageName, 'ceca');
-            Alert::success('Success', 'Memorial has been created');
+
+            $result = $data->isExist($request);
+            if ($result['status'] == true) {
+                Alert::error('Error', $result['message']);
+            } else {
+                $data->first_name = $request->first_name;
+                $data->middle_name = $request->middle_name ? $request->middle_name : '';
+                $data->last_name = $request->last_name;
+                $data->nik = $request->nik;
+                $data->gender = $data->getGenderAttribute($request->gender);
+                $data->relationship_id = $request->relationship;
+                $data->category_id = $request->memorial_category;
+                $data->date_of_birth = $request->date_of_birth;
+                $data->date_of_death = $request->date_of_death;
+                $data->alamat = $request->alamat;
+                $filename = time() . '.' . $request->image->extension();
+                $img = Image::make($request->file('image')->path());
+                $destination = public_path('/storage/images/');
+                $img->save($destination . $filename, 80);
+                $data->save();
+                $data->accounts()->attach($request->get('accounts_id'));
+                $data->createMemorialImages($filename, 'coba');
+                Alert::success('Success', 'Memorial has been created');
+            }
             return back();
         } catch (\Exception $e) {
             //throw $th;
             return $e->getMessage();
+        }
+    } 
+    public function addMoreImages(Request $request, $id)
+    {
+        $data = Memorials::find($id);
+
+        $memorial_image = new MemorialImages();
+        $validate = $memorial_image->validate_total_image($id);
+        if ($validate['status'] == true) {
+            Alert::error('Validate', $validate['message']);
+            return back();
+        } else {
+            for ($i = 0; $i < count($request->file('image')); $i++) {
+                $filename = str_replace(' ', '', $request->file('image')[$i]->getClientOriginalName());
+                $image = $request->file('image')[$i];
+                $img = Image::make($image->path());
+                $destination = public_path('/storage/images/');
+                $img->resize(300, 300, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($destination . $filename, 80);
+                insertIntoMemorialImages($data, $filename, $destination . $filename);
+            }
+            Alert::success('Success', "Images has bean added");
+            return back();
+        }        
+    }
+    public function update(Request $request, $id)
+    {
+
+        $credentials = Validator::make($request->all(), [
+            'first_name' => 'nullable|max:255',
+            'middle_name' => 'nullable',
+            'last_name' => 'nullable',
+        ]);
+        $description = $request->description || $request->life ? array('description' => $request->description, 'life' => $request->life) : null;
+
+        if ($credentials->fails()) {
+            Alert::error('Error', $credentials->errors()->first());
+            return back();
+        }
+        
+        $data = Memorials::find($id);
+        $data->first_name = is_null($request->first_name) ? $data->first_name : $request->first_name;
+        $data->middle_name = is_null($request->middle_name) ? $data->middle_name : $request->middle_name;
+        $data->last_name = is_null($request->last_name) ? $data->last_name : $request->last_name;
+        $data->gender = $data->getGenderAttribute($request->gender);
+        if (!is_null($description)) create_or_update_memorial_description($data, $description);
+        $data->save();
+        Alert::success('Success', 'Successfully updated data');
+        return back();
+    }
+    public function delete(Request $request)
+    {
+        $data = Memorials::with('memorialImages')
+            ->whereHas('memorialImages', function ($q) use ($request) {
+                $q->where('memorial_id', '=', $request->id);
+            })->get();
+        $memorial = Memorials::find($request->id);
+    
+        try {
+            //code...
+            foreach ($data as $items) {
+                # code...
+                
+                $count_items = count($items->memorialImages->pluck('title'));                
+                for ($i = 0; $i < $count_items; $i++) {
+                    # code...                    
+                    Storage::delete("public/images/".$items->memorialImages->pluck('title')[$i]);
+                }
+            }       
+            $memorial_image = MemorialImages::whereMemorialId($request->id);
+            $memorial_image->delete();       
+            $memorial_accounts = MemorialsAccounts::whereMemorialsId($request->id);
+            $memorial_accounts->delete();
+            $memorial_reviews = MemorialsReviews::whereMemorialId($request->id);
+            $memorial_reviews->delete();
+            $memorial_description = MemorialDescription::whereMemorialId($request->id);
+            // dd($memorial_description);
+            $memorial_description->delete();
+            $memorial->delete();
+
+                                                           
+            toast('Memorials Deleted', 'warning');
+            return back();
+        } catch (\Exception $e) {
+            //throw $th;
+            Alert::error('Error', $e->getMessage());
+            return back();
         }
     }
 }

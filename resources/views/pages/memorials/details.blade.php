@@ -30,12 +30,18 @@
                                         voluptua. Phasellus id nisi quis justo tempus mollis sed et dui. In hac
                                         habitasse platea dictumst.</p>
 
+<<<<<<< HEAD
                                     @auth
+=======
+
+                                    @if (Auth::check() == true)
+>>>>>>> b39e2372f9e39e2a093e9d08041047edf02f7544
                                         @if (auth()->user()->id == $account_id)
                                             <button class="btn btn__bg" style="margin-right: 10px" data-bs-toggle="modal"
                                                 data-bs-target="#modalEdit">
                                                 Edit
                                             </button>
+<<<<<<< HEAD
                                             <button class="btn btn__primary" style="margin-right: 10px" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModalImages">
                                                 Add Images
@@ -45,6 +51,19 @@
                                     <button style="font-size: 14px; padding: 10px 20px; border-radius: 0"
                                         data-bs-toggle="modal" data-bs-target="#modalApproved" class="btn btn-success">Claim
                                         Family</button>
+=======
+                                            <button class="btn btn__primary" style="margin-right: 10px"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModalImages">
+                                                Add Images
+                                            </button>
+                                        @endif
+                                    @else
+                                        <button style="font-size: 14px; padding: 10px 20px; border-radius: 0"
+                                            data-bs-toggle="modal" data-bs-target="#modalApproved"
+                                            class="btn btn-success">Claim
+                                            Family</button>
+                                    @endif
+>>>>>>> b39e2372f9e39e2a093e9d08041047edf02f7544
                                 </div>
                             </div>
 
@@ -104,18 +123,31 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">About</label>
+<<<<<<< HEAD
                                                 <textarea name="description" class="form-control"
                                                     id="exampleFormControlTextarea1" cols="30" rows="10">
                                                                                                                     @if ($data->memorialDescription)
     {{ $data->memorialDescription->description }}
     @endif
                                                                                                                     </textarea>
+=======
+                                                <textarea name="description" class="form-control" id="exampleFormControlTextarea1" cols="30" rows="10">
+                                                                                                                        @if ($data->memorialDescription)
+{{ $data->memorialDescription->description }}
+@endif
+                                                                                                                        </textarea>
+>>>>>>> b39e2372f9e39e2a093e9d08041047edf02f7544
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea2">Life</label>
                                                 <textarea name="life" class="form-control" id="" cols="30" rows="10">
+<<<<<<< HEAD
                                                                                                             {{ $data->memorialDescription ? $data->memorialDescription->life : '' }}
                                                                                                         </textarea>
+=======
+                                                                                                                {{ $data->memorialDescription ? $data->memorialDescription->life : '' }}
+                                                                                                            </textarea>
+>>>>>>> b39e2372f9e39e2a093e9d08041047edf02f7544
                                             </div>
                                         </div>
                                         <div class="modal-footer">

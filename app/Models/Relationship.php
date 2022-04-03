@@ -16,4 +16,9 @@ class Relationship extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function memorials()
+    {
+        return $this->hasMany(Memorials::class, 'relationship_id');
+    }
 }

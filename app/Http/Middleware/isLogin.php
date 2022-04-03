@@ -19,6 +19,7 @@ class isLogin
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()){
+            $request->attributes->add(['accounts_id' => auth()->user()->id]);
             return $next($request);
         }
         Alert::info('Remind', 'You should must be login first');

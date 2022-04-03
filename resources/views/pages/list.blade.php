@@ -3,7 +3,7 @@
 @section('content')
     <div class="shop-main-wrapper section-space pb-0">
         <div class="container">
-
+            
             <div class="row">
                 {{-- Sidebar area --}}
                 <div class="col-lg-3 order-2 order-lg-1">
