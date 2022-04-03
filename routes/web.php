@@ -40,6 +40,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'isAdmin'], function () {
     Route::post('/create/bank', [PaymentMethodController::class, 'create']);
     Route::put('/update/bank/{id}', [PaymentMethodController::class, 'update']);
     Route::delete('/destroy/bank/{id}', [PaymentMethodController::class, 'delete']);
+    Route::delete('/destroy/account/{id}', [DashboardController::class, 'deleteAccount']);
 });
 // == End of line Route Dashboard
 
@@ -68,7 +69,7 @@ Route::group(['prefix' => 'reviews'], function () {
 Route::prefix('/home')->group(function () {
     Route::get('/list', [HomeController::class, 'pageList']);
     Route::get('/search', [HomeController::class, 'searching'])->name('search');
-    Route::get('/features', [HomeController::class, 'pagePlanAndFeatures']);
+    Route::get('/features', [HomeController::class, 'pagePlanAndFeatures'])->middleware('isLogin');
     Route::get('/create', [HomeController::class, 'pageCreate'])->middleware('isLogin');
     Route::get('/detail/{id}', [HomeController::class, 'pageDetail']);
     Route::get('/myaccount', [HomeController::class, 'pageMyAccount'])->middleware('isLogin');
