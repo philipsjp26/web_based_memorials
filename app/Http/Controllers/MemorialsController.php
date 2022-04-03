@@ -18,8 +18,8 @@ class MemorialsController extends Controller
 {
     public function create(Request $request)
     {
-        $account_type = Account::find($request->get('accounts_id'));        
-        if($account_type == 'freemium' && count($account_type) == 1) {
+        $account_type = Account::find($request->get('accounts_id'));           
+        if($account_type->type == 'freemium' && count($account_type->memorials) == 1) {
             Alert::error("Error", 'Your account is freemium, please upgrade to premium');
             return back();
         } 
