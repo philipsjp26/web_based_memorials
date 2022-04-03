@@ -19,7 +19,7 @@ class Memorials extends Model
     ];
     protected $fillable = [
         'id',
-        'first_name', 'middle_name', 'last_name', 'date_of_birth', 'date_of_death',
+        'first_name', 'middle_name', 'last_name', 'date_of_birth', 'date_of_death','other_relationship',
         'nik', 'gender', 'relationship_id', 'category_id'
     ];
 
