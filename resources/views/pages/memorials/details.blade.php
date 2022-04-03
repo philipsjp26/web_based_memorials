@@ -87,6 +87,11 @@
                                             <input type="type" name="last_name" class="form-control"
                                                 placeholder="{{ $data->last_name }}" autocomplete="off">
                                         </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="exampleInputEmail1">Other relationship</label>
+                                            <input type="type" name="last_name" class="form-control"
+                                                placeholder="{{ $data->other_relationship }}" autocomplete="off">
+                                        </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Gender : </label>
                                             <div class="form-check">

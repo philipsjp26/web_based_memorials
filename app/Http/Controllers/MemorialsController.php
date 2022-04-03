@@ -55,6 +55,7 @@ class MemorialsController extends Controller
                 $data->category_id = $request->memorial_category;
                 $data->date_of_birth = $request->date_of_birth;
                 $data->date_of_death = $request->date_of_death;
+                $data->other_relationship = $request->other_relationship;
                 $data->alamat = $request->alamat;
                 $filename = time() . '.' . $request->image->extension();
                 $img = Image::make($request->file('image')->path());
